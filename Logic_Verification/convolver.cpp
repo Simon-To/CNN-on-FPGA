@@ -65,17 +65,17 @@ public:
     }
 };
 
-int main() {
-    // // Create an object of MyClass
-    // MyClass myObject(10, 20.5, "Hello");
-
-    // // Access and modify attributes using setter and getter methods
-    // myObject.setAttribute1(15);
-    // std::cout << "Updated Attribute 1: " << myObject.getAttribute1() << std::endl;
-
-    // // Print all attributes
-    // myObject.printAttributes();
-    std::cout << "BRooodfsd" << std::endl;
-
-    return 0;
-}
+//int main() {
+//    // // Create an object of MyClass
+//    // MyClass myObject(10, 20.5, "Hello");
+//
+//    // // Access and modify attributes using setter and getter methods
+//    // myObject.setAttribute1(15);
+//    // std::cout << "Updated Attribute 1: " << myObject.getAttribute1() << std::endl;
+//
+//    // // Print all attributes
+//    // myObject.printAttributes();
+//    std::cout << "BRooodfsd" << std::endl;
+//
+//    return 0;
+//}

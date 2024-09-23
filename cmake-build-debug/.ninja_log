@@ -1,0 +1,6 @@
+# ninja log v5
+2	241	1727046417205055682	CMakeFiles/personal_project_clion.dir/Logic_Verification/convolver.cpp.o	178d1ef54e6a3280
+2	300	1727086177706152221	CMakeFiles/personal_project_clion.dir/Logic_Verification/main.cpp.o	73b7cf1aaa66c5cf
+300	329	1727086177735661922	personal_project_clion	393f104c0431c589
+0	35	1727087812084770845	build.ninja	57877c3706596893
+3	224	1727046417187591357	CMakeFiles/personal_project_clion.dir/Logic_Verification/tanh.cpp.o	93f1a44dee8fac92
