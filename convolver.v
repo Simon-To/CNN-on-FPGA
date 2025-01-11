@@ -12,11 +12,13 @@ module convolution #( // Declaring convolution as a parameterized module
     input clk_en,           // Clock enables
     input glb_rst,          // Global reset signal
     input [WIDTH-1:0] activation,   // An element in input matrix
-    output wire [N-1:0] 
+    output wire [N-1:0] one_row, // Output of the convolution
     input wire reset,        // Reset signal
     input wire [3:0] in,     // 4-bit input
     output reg [3:0] out     // 4-bit output
 );
+
+
 
 // Internal signals
 reg [3:0] temp_reg;
@@ -32,6 +34,10 @@ always @(posedge clk or posedge reset) begin
         temp_reg <= in;
         out <= temp_reg;
     end
+end
+
+initial begin
+    $display("Simulation started");
 end
 
 

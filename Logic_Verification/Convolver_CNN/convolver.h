@@ -48,8 +48,8 @@ public:
 
     }
 
-    Convolver(const vector<vector<int>>& kernel, const vector<vector<int>>& input, int stride_size, int a1, double a2, const std::string& a3)
-        : kernel(kernel), input(input), stride_size(stride_size), attribute1(a1), attribute2(a2), attribute3(a3) {}
+    // Convolver(const vector<vector<int>>& kernel, const vector<vector<int>>& input, int stride_size, int a1, double a2, const std::string& a3)
+    //     : kernel(kernel), input(input), stride_size(stride_size), attribute1(a1), attribute2(a2), attribute3(a3) {}
 
     // Default constructor
     Convolver() : kernel(vector<vector<int>>(1, vector<int>(1, 0))), attribute1(0), attribute2(0.0), attribute3("default") {}
