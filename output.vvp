@@ -7,7 +7,7 @@
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
 :vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
-S_0x12f0055f0 .scope module, "convolution" "convolution" 2 2;
+S_0x13cf057c0 .scope module, "convolution" "convolution" 2 2;
  .timescale 0 0;
     .port_info 0 /INPUT 1 "clk";
     .port_info 1 /INPUT 1 "clk_en";
@@ -17,48 +17,48 @@ S_0x12f0055f0 .scope module, "convolution" "convolution" 2 2;
     .port_info 5 /INPUT 1 "reset";
     .port_info 6 /INPUT 4 "in";
     .port_info 7 /OUTPUT 4 "out";
-P_0x12f005760 .param/l "K" 0 2 5, C4<00000011>;
-P_0x12f0057a0 .param/l "N" 0 2 4, C4<00001010>;
-P_0x12f0057e0 .param/l "Q" 0 2 8, +C4<00000000000000000000000000001100>;
-P_0x12f005820 .param/l "S" 0 2 6, +C4<00000000000000000000000000000001>;
-P_0x12f005860 .param/l "WIDTH" 0 2 7, +C4<00000000000000000000000000010000>;
-o0x130040010 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
-v0x12f00b340_0 .net "activation", 15 0, o0x130040010;  0 drivers
-o0x130040040 .functor BUFZ 1, C4<z>; HiZ drive
-v0x12f01b070_0 .net "clk", 0 0, o0x130040040;  0 drivers
-o0x130040070 .functor BUFZ 1, C4<z>; HiZ drive
-v0x12f01b110_0 .net "clk_en", 0 0, o0x130040070;  0 drivers
-o0x1300400a0 .functor BUFZ 1, C4<z>; HiZ drive
-v0x12f01b1a0_0 .net "glb_rst", 0 0, o0x1300400a0;  0 drivers
-o0x1300400d0 .functor BUFZ 4, C4<zzzz>; HiZ drive
-v0x12f01b240_0 .net "in", 3 0, o0x1300400d0;  0 drivers
-o0x130040100 .functor BUFZ 10, C4<zzzzzzzzzz>; HiZ drive
-v0x12f01b330_0 .net "one_row", 9 0, o0x130040100;  0 drivers
-v0x12f01b3e0_0 .var "out", 3 0;
-o0x130040160 .functor BUFZ 1, C4<z>; HiZ drive
-v0x12f01b490_0 .net "reset", 0 0, o0x130040160;  0 drivers
-v0x12f01b530_0 .var "temp_reg", 3 0;
-E_0x12f0074f0 .event posedge, v0x12f01b490_0, v0x12f01b070_0;
-    .scope S_0x12f0055f0;
+P_0x13cf05930 .param/l "K" 0 2 5, C4<00000011>;
+P_0x13cf05970 .param/l "N" 0 2 4, C4<00001010>;
+P_0x13cf059b0 .param/l "Q" 0 2 8, +C4<00000000000000000000000000001100>;
+P_0x13cf059f0 .param/l "S" 0 2 6, +C4<00000000000000000000000000000001>;
+P_0x13cf05a30 .param/l "WIDTH" 0 2 7, +C4<00000000000000000000000000010000>;
+o0x140040010 .functor BUFZ 16, C4<zzzzzzzzzzzzzzzz>; HiZ drive
+v0x13cf0b510_0 .net "activation", 15 0, o0x140040010;  0 drivers
+o0x140040040 .functor BUFZ 1, C4<z>; HiZ drive
+v0x13cf1b240_0 .net "clk", 0 0, o0x140040040;  0 drivers
+o0x140040070 .functor BUFZ 1, C4<z>; HiZ drive
+v0x13cf1b2e0_0 .net "clk_en", 0 0, o0x140040070;  0 drivers
+o0x1400400a0 .functor BUFZ 1, C4<z>; HiZ drive
+v0x13cf1b370_0 .net "glb_rst", 0 0, o0x1400400a0;  0 drivers
+o0x1400400d0 .functor BUFZ 4, C4<zzzz>; HiZ drive
+v0x13cf1b410_0 .net "in", 3 0, o0x1400400d0;  0 drivers
+o0x140040100 .functor BUFZ 10, C4<zzzzzzzzzz>; HiZ drive
+v0x13cf1b500_0 .net "one_row", 9 0, o0x140040100;  0 drivers
+v0x13cf1b5b0_0 .var "out", 3 0;
+o0x140040160 .functor BUFZ 1, C4<z>; HiZ drive
+v0x13cf1b660_0 .net "reset", 0 0, o0x140040160;  0 drivers
+v0x13cf1b700_0 .var "temp_reg", 3 0;
+E_0x13cf076c0 .event posedge, v0x13cf1b660_0, v0x13cf1b240_0;
+    .scope S_0x13cf057c0;
 T_0 ;
-    %wait E_0x12f0074f0;
-    %load/vec4 v0x12f01b490_0;
+    %wait E_0x13cf076c0;
+    %load/vec4 v0x13cf1b660_0;
     %flag_set/vec4 8;
     %jmp/0xz  T_0.0, 8;
     %pushi/vec4 0, 0, 4;
-    %assign/vec4 v0x12f01b3e0_0, 0;
+    %assign/vec4 v0x13cf1b5b0_0, 0;
     %pushi/vec4 0, 0, 4;
-    %assign/vec4 v0x12f01b530_0, 0;
+    %assign/vec4 v0x13cf1b700_0, 0;
     %jmp T_0.1;
 T_0.0 ;
-    %load/vec4 v0x12f01b240_0;
-    %assign/vec4 v0x12f01b530_0, 0;
-    %load/vec4 v0x12f01b530_0;
-    %assign/vec4 v0x12f01b3e0_0, 0;
+    %load/vec4 v0x13cf1b410_0;
+    %assign/vec4 v0x13cf1b700_0, 0;
+    %load/vec4 v0x13cf1b700_0;
+    %assign/vec4 v0x13cf1b5b0_0, 0;
 T_0.1 ;
     %jmp T_0;
     .thread T_0;
-    .scope S_0x12f0055f0;
+    .scope S_0x13cf057c0;
 T_1 ;
     %vpi_call 2 40 "$display", "Simulation started" {0 0 0};
     %end;
