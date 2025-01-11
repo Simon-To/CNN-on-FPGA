@@ -17,6 +17,7 @@ void print2DVector(const std::vector<std::vector<float>>& matrix, const std::str
     std::cout << std::endl;
 }
 
+// Simon says
 // Convolution function
 //  - input: 2D input data (e.g., an image)
 //  - kernel: 2D filter (e.g., a 3x3 or 5x5 filter)
