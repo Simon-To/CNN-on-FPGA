@@ -20,3 +20,7 @@ Running a deployed Convolutional Neural Network on FPGA
 3. Explore possibility of three- or even more iteration CORDIC.
 
 
+## Update 10/19
+
+
+
