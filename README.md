@@ -18,6 +18,9 @@ Running a deployed Convolutional Neural Network on FPGA
 1. Read through the guide on CORDIC Verilog implementation. 
 2. Find how to implement our two-iteration CORDIC efficiently.
 3. Explore possibility of three- or even more iteration CORDIC.
+4. Note that XILINX Vivado has built-in CORDIC IP that we could potentially use. Relevant links:
+   1. https://www.xilinx.com/products/intellectual-property/cordic.html#overview
+   2. https://docs.amd.com/v/u/en-US/cordic_ds249
 
 
 ## Update 10/19
