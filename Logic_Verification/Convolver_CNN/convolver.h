@@ -15,8 +15,9 @@ private:
     int WIDTH; // Width of the bits used
     int Q; // Number of fractional bits in the case of fixed point
 
-    vector<vector<int>> kernel;     // Kernel of convolution
     vector<vector<int>> input;      // Input matrix to perform convolution
+    vector<vector<int>> kernel;     // Kernel of convolution
+    vector<vector<int>> output;     // Output matrix after convolution
     int attribute1;
     double attribute2;
     std::string attribute3;
@@ -41,6 +42,7 @@ private:
 );
  */
 public:
+    // PART 1 STARTS HERE: Constructor and Destructor Implementation:
     // Main Constructor Implementation:
     Convolver(int N, int K, int S, int WIDTH, int Q, const vector<vector<int>>& kernel, const vector<vector<int>>& input)
         : N(N), K(K), S(S), WIDTH(WIDTH), Q(Q), kernel(kernel), input(input) {
@@ -57,6 +59,17 @@ public:
     // Destructor
     ~Convolver() {}
 
+    // PART 1 ENDS HERE
+
+
+
+
+    // PART 2 STARTS HERE: Public Member Function Declarations:
+    vector<vector<int>> convolve();
+
+
+    // PART 2 ENDS HERE
+
     // Public member functions (methods)
 
     // // Setter for attribute1
@@ -71,11 +84,9 @@ public:
 
 
     // Example of a public method that does something with the attributes
-    void printAttributes() const {
-        std::cout << "Attribute 1: " << attribute1 << std::endl;
-        std::cout << "Attribute 2: " << attribute2 << std::endl;
-        std::cout << "Attribute 3: " << attribute3 << std::endl;
-    }
+    
+
+
 };
 
 //int main() {

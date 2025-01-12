@@ -40,7 +40,7 @@ Completed Environment setup for C++
 - Simulating Verilog files:
   - Click on "Simulate Verilog"
 
-
+$ax^2 + bx + c = 0$
 
 
 
