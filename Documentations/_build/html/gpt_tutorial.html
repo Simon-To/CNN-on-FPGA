@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Install Jupyter Book &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gpt_tutorial';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Install Jupyter Book</a></li>
+
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgpt_tutorial.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/gpt_tutorial.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1. Install Jupyter Book</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Install Jupyter Book</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-jupyter-book-structure">2. Create the Jupyter Book Structure</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-your-existing-markdown-files">3. Add Your Existing Markdown Files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-table-of-contents">4. Configure the Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-your-code">5. Reference Your Code</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-preview-locally">6. Build &amp; Preview Locally</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-on-github-pages">7. Publish on GitHub Pages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-workflow-with-github-actions">Automated Workflow with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#enhance-your-book">8. Enhance Your Book</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customize-config-yml">8.1. Customize <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-interactive-code-cells">8.2. Add Interactive Code Cells</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-repository-structure-example">9. Final Repository Structure Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p>Below is a step-by-step guide on how you can use <strong>Jupyter Book</strong> to incorporate your existing code and Markdown files into a polished, notebook-like documentation site. We’ll assume you already have a repository containing some code in (for example) a <code class="docutils literal notranslate"><span class="pre">src/</span></code> folder, plus a few Markdown documents that you want to present in a cohesive way.</p>
+<hr class="docutils" />
+<section id="install-jupyter-book">
+<h1>1. Install Jupyter Book<a class="headerlink" href="#install-jupyter-book" title="Link to this heading">#</a></h1>
+<p>First, ensure you have Python 3.x installed. Then install Jupyter Book (preferably in a virtual environment) using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>jupyter-book
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="create-the-jupyter-book-structure">
+<h1>2. Create the Jupyter Book Structure<a class="headerlink" href="#create-the-jupyter-book-structure" title="Link to this heading">#</a></h1>
+<p>Inside your project (or elsewhere, and then you can move it over), run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book<span class="w"> </span>create<span class="w"> </span>mybook
+</pre></div>
+</div>
+<p>This command creates a starter folder, <code class="docutils literal notranslate"><span class="pre">mybook/</span></code>, with a basic structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>mybook/
+├── _config.yml
+├── _toc.yml
+├── intro.md
+└── references.bib
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">_config.yml</span></code></strong>: Global configuration for your book (title, authors, logo, theme, etc.).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code></strong>: Table of Contents configuration. Defines the order and hierarchy of chapters/pages in your book.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">intro.md</span></code></strong>: An example “home page” for your book.</p></li>
+</ul>
+<p>You can rename <code class="docutils literal notranslate"><span class="pre">mybook</span></code> to something like <code class="docutils literal notranslate"><span class="pre">docs</span></code> if you want it to live directly in your repo. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my-repo/
+├─ src/
+│   ├─ ...
+├─ tests/
+│   ├─ ...
+├─ docs/            # your Jupyter Book folder
+│   ├─ _config.yml
+│   ├─ _toc.yml
+│   ├─ intro.md
+│   └─ ...
+└─ README.md
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+<section id="add-your-existing-markdown-files">
+<h1>3. Add Your Existing Markdown Files<a class="headerlink" href="#add-your-existing-markdown-files" title="Link to this heading">#</a></h1>
+<p>If you already have Markdown files you want to include, move or copy them into the <code class="docutils literal notranslate"><span class="pre">mybook/</span></code> (or <code class="docutils literal notranslate"><span class="pre">docs/</span></code>) folder. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docs/
+├─ _config.yml
+├─ _toc.yml
+├─ intro.md
+├─ tutorial.md
+├─ advanced.md
+└─ ...
+</pre></div>
+</div>
+<p>You can also add <strong>Jupyter Notebooks</strong> (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) if you have them. Jupyter Book can handle both Markdown files and notebooks in the same build.</p>
+<hr class="docutils" />
+</section>
+<section id="configure-the-table-of-contents">
+<h1>4. Configure the Table of Contents<a class="headerlink" href="#configure-the-table-of-contents" title="Link to this heading">#</a></h1>
+<p>Open <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> in your <code class="docutils literal notranslate"><span class="pre">docs/</span></code> folder to outline how readers will navigate your content. For example:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># _toc.yml</span>
+<span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jb-book</span>
+<span class="nt">root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">intro</span>
+
+<span class="nt">chapters</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tutorial</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">advanced</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">root:</span> <span class="pre">intro</span></code> means <code class="docutils literal notranslate"><span class="pre">intro.md</span></code> is the homepage.</p></li>
+<li><p>Each <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">file:</span> <span class="pre">tutorial</span></code> line references a Markdown (or Notebook) file in the same directory (without the <code class="docutils literal notranslate"><span class="pre">.md</span></code> extension in the TOC).</p></li>
+<li><p>You can nest items (sub-chapters) under <code class="docutils literal notranslate"><span class="pre">sections:</span></code> if you want a deeper hierarchy.</p></li>
+</ul>
+<p>For more complex structures, see <a class="reference external" href="https://jupyterbook.org/en/stable/structure/toc.html">Jupyter Book TOC documentation</a>.</p>
+<hr class="docutils" />
+</section>
+<section id="reference-your-code">
+<h1>5. Reference Your Code<a class="headerlink" href="#reference-your-code" title="Link to this heading">#</a></h1>
+<p>If you keep your code in <code class="docutils literal notranslate"><span class="pre">src/</span></code>, you can link to it from the Markdown pages. For example, in <code class="docutils literal notranslate"><span class="pre">tutorial.md</span></code>:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Tutorial</span>
+
+In this section, we&#39;ll show how to use the main function in [<span class="nt">main.py</span>](<span class="na">../src/main.py</span>).
+</pre></div>
+</div>
+<ul>
+<li><p>Relative paths are often easiest for linking to code in the same repository.</p></li>
+<li><p>If you need to embed code snippets directly in your doc, just use fenced code blocks:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```python
+<span class="gh"># docs/tutorial.md</span>
+from my_module import do_stuff
+
+do_stuff()
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Additionally, Jupyter Book supports code cell blocks that can be executed and displayed if you convert your <code class="docutils literal notranslate"><span class="pre">.md</span></code> to <a class="reference external" href="https://myst-parser.readthedocs.io/">MyST Markdown</a>, but that’s optional.</p>
+<hr class="docutils" />
+</section>
+<section id="build-preview-locally">
+<h1>6. Build &amp; Preview Locally<a class="headerlink" href="#build-preview-locally" title="Link to this heading">#</a></h1>
+<p>From within the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> folder (or wherever you placed your Jupyter Book), run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book<span class="w"> </span>build<span class="w"> </span>.
+</pre></div>
+</div>
+<p>You should see a <code class="docutils literal notranslate"><span class="pre">_build/</span></code> directory appear, containing the HTML output. To preview locally, you can open <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code> in your browser or run a local server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span>--directory<span class="w"> </span>_build/html<span class="w"> </span><span class="m">8000</span>
+</pre></div>
+</div>
+<p>Then visit <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/</span></code>.</p>
+<hr class="docutils" />
+</section>
+<section id="publish-on-github-pages">
+<h1>7. Publish on GitHub Pages<a class="headerlink" href="#publish-on-github-pages" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Create a separate branch</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>) or use a <code class="docutils literal notranslate"><span class="pre">docs/</span></code> folder approach on your default branch to serve the site via GitHub Pages.</p></li>
+<li><p>In your repository’s <strong>Settings</strong> -&gt; <strong>Pages</strong>, choose the source branch/folder.</p></li>
+<li><p>Push the built files from <code class="docutils literal notranslate"><span class="pre">_build/html/</span></code> to that branch/folder.</p></li>
+</ol>
+<section id="automated-workflow-with-github-actions">
+<h2>Automated Workflow with GitHub Actions<a class="headerlink" href="#automated-workflow-with-github-actions" title="Link to this heading">#</a></h2>
+<p>You can automate the build-and-deploy process using GitHub Actions. For instance, create a <code class="docutils literal notranslate"><span class="pre">.github/workflows/jupyterbook.yml</span></code> file in your repo:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and deploy Jupyter Book</span>
+
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w">  </span><span class="c1"># or any branch you want to build from</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build-and-deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check out repository</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.x</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">pip install -U jupyter-book</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build the book</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">cd docs</span>
+<span class="w">          </span><span class="no">jupyter-book build .</span>
+
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GitHub Pages</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docs/_build/html</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This workflow checks out your code, installs Jupyter Book, builds the HTML in <code class="docutils literal notranslate"><span class="pre">docs/_build/html</span></code>, and deploys it to GitHub Pages automatically whenever you push to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p>Make sure your <strong>GitHub Pages</strong> settings point to the correct branch (<code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>) or the <code class="docutils literal notranslate"><span class="pre">/docs</span></code> folder on <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+<section id="enhance-your-book">
+<h1>8. Enhance Your Book<a class="headerlink" href="#enhance-your-book" title="Link to this heading">#</a></h1>
+<section id="customize-config-yml">
+<h2>8.1. Customize <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code><a class="headerlink" href="#customize-config-yml" title="Link to this heading">#</a></h2>
+<p>You can personalize your book’s appearance and behavior:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># _config.yml</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;My</span><span class="nv"> </span><span class="s">Awesome</span><span class="nv"> </span><span class="s">Project&quot;</span>
+<span class="nt">author</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Your</span><span class="nv"> </span><span class="s">Name&quot;</span>
+<span class="nt">logo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">images/my_logo.png</span>
+<span class="nt">execute</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">execute_notebooks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">off</span>
+<span class="nt">html</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">favicon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">images/favicon.ico</span>
+<span class="w">  </span><span class="nt">theme</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;sphinx_book_theme&quot;</span>
+</pre></div>
+</div>
+<p>Check out <a class="reference external" href="https://jupyterbook.org/en/stable/customize/config.html">Configuration options</a> for more details.</p>
+</section>
+<section id="add-interactive-code-cells">
+<h2>8.2. Add Interactive Code Cells<a class="headerlink" href="#add-interactive-code-cells" title="Link to this heading">#</a></h2>
+<p>If you want your readers to <strong>run code directly in their browsers</strong> (e.g., with a Binder or Deepnote badge), you can add a “launch button.” For instance, at the top of your pages, include:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">launch_buttons</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">binderhub_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://mybinder.org</span>
+</pre></div>
+</div>
+<p>Then readers can click a button to open your notebooks (or repository) in an interactive environment.</p>
+<hr class="docutils" />
+</section>
+</section>
+<section id="final-repository-structure-example">
+<h1>9. Final Repository Structure Example<a class="headerlink" href="#final-repository-structure-example" title="Link to this heading">#</a></h1>
+<p>Here’s how it might look once you integrate Jupyter Book into your existing project:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my-repo/
+├─ src/                  
+│   ├─ main.py           
+│   └─ ...
+├─ tests/                
+│   ├─ ...
+├─ docs/                 # Jupyter Book
+│   ├─ _config.yml
+│   ├─ _toc.yml
+│   ├─ intro.md
+│   ├─ tutorial.md
+│   ├─ advanced.md
+│   └─ images/
+├─ README.md             # Summary / instructions
+└─ .github/workflows/    # GitHub Actions for CI/CD
+   └─ jupyterbook.yml
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">src/</span></code></strong>: All your project code.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">docs/</span></code></strong>: Jupyter Book source, with Markdown (and/or notebooks).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">README.md</span></code></strong>: Quick project overview (often referencing your docs site).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.github/workflows/</span></code></strong>: Automated build/deployment to GitHub Pages or other environment.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="key-takeaways">
+<h1>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Jupyter Book</strong> transforms Markdown (and notebook) files into a cohesive, book-style website.</p></li>
+<li><p><strong>Keep your code</strong> in a separate folder (e.g., <code class="docutils literal notranslate"><span class="pre">src/</span></code>), and link to relevant files from your docs.</p></li>
+<li><p><strong>_toc.yml</strong> and <strong>_config.yml</strong> let you customize the structure and theme of your book.</p></li>
+<li><p><strong>Use GitHub Actions</strong> to automate builds and deploy to GitHub Pages for seamless hosting.</p></li>
+</ol>
+<p>With this setup, you’ll have a neat “documentation hub” for all your Markdown files—presented as a professionally styled, interactive book—while still keeping your source code organized in its own part of the repository. Readers (and contributors) can easily browse your code, read your tutorials, view interactive notebooks, and enjoy a consistent look and feel.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="markdown-notebooks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Notebooks with MyST Markdown</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Install Jupyter Book</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#create-the-jupyter-book-structure">2. Create the Jupyter Book Structure</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#add-your-existing-markdown-files">3. Add Your Existing Markdown Files</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#configure-the-table-of-contents">4. Configure the Table of Contents</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-your-code">5. Reference Your Code</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#build-preview-locally">6. Build &amp; Preview Locally</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-on-github-pages">7. Publish on GitHub Pages</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-workflow-with-github-actions">Automated Workflow with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#enhance-your-book">8. Enhance Your Book</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#customize-config-yml">8.1. Customize <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#add-interactive-code-cells">8.2. Add Interactive Code Cells</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-repository-structure-example">9. Final Repository Structure Example</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
