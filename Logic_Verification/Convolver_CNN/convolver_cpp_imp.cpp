@@ -93,11 +93,7 @@ int main() {
     // Example kernel (3x3). A simple edge-detect-like kernel or blur kernel, etc.
     // For example, let's try a simple kernel that enhances center pixel.
     // If you want a Sobel-like kernel, you can insert those values here.
-    std::vector<std::vector<float>> kernel = {
-        { 0, -1,  0},
-        {-1,  5, -1},
-        { 0, -1,  0}
-    };
+    std::vector<std::vector<float>> kernel = .
 
     // Print the input image
     print2DVector(inputImage, "Input Image");

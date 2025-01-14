@@ -72,28 +72,44 @@ include CMakeFiles/personal_project_clion.dir/flags.make
 CMakeFiles/personal_project_clion.dir/codegen:
 .PHONY : CMakeFiles/personal_project_clion.dir/codegen
 
-CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o: CMakeFiles/personal_project_clion.dir/flags.make
-CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o: /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp
-CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o: CMakeFiles/personal_project_clion.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/simonto/Document/personal_projects/CNN-on-FPGA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o -MF CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o.d -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o: CMakeFiles/personal_project_clion.dir/flags.make
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o: /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o: CMakeFiles/personal_project_clion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/simonto/Document/personal_projects/CNN-on-FPGA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o -MF CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o.d -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp
 
-CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp > CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp > CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.i
 
-CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.s
+
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o: CMakeFiles/personal_project_clion.dir/flags.make
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o: /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o: CMakeFiles/personal_project_clion.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/simonto/Document/personal_projects/CNN-on-FPGA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o -MF CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o.d -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp
+
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp > CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.i
+
+CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.s
 
 # Object files for target personal_project_clion
 personal_project_clion_OBJECTS = \
-"CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o"
+"CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o" \
+"CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o"
 
 # External object files for target personal_project_clion
 personal_project_clion_EXTERNAL_OBJECTS =
 
-personal_project_clion: CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o
+personal_project_clion: CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o
+personal_project_clion: CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o
 personal_project_clion: CMakeFiles/personal_project_clion.dir/build.make
 personal_project_clion: /opt/homebrew/lib/libopencv_gapi.4.11.0.dylib
 personal_project_clion: /opt/homebrew/lib/libopencv_stitching.4.11.0.dylib
@@ -152,7 +168,7 @@ personal_project_clion: /opt/homebrew/lib/libopencv_photo.4.11.0.dylib
 personal_project_clion: /opt/homebrew/lib/libopencv_imgproc.4.11.0.dylib
 personal_project_clion: /opt/homebrew/lib/libopencv_core.4.11.0.dylib
 personal_project_clion: CMakeFiles/personal_project_clion.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/simonto/Document/personal_projects/CNN-on-FPGA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable personal_project_clion"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/simonto/Document/personal_projects/CNN-on-FPGA/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable personal_project_clion"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/personal_project_clion.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

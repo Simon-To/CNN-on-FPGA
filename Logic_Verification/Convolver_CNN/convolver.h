@@ -10,17 +10,18 @@ private:
     // Private member variables (attributes)
     // Private Part 1: User Input Params:
     int N; // Side length of input matrix
-    int K; // Side length of kernel
+    int K; // Side length of kernel, declared as static const to be used in lambda.
     int S; // Stride size (horizontal stride = vertical stride)
     int WIDTH; // Width of the bits used
     int Q; // Number of fractional bits in the case of fixed point
+    bool use_padding; // Use padding or not
 
     vector<vector<int>> input;      // Input matrix to perform convolution
     vector<vector<int>> kernel;     // Kernel of convolution
-    vector<vector<int>> output;     // Output matrix after convolution
-    int attribute1;
-    double attribute2;
-    std::string attribute3;
+    // vector<vector<int>> output;     // Output matrix after convolution
+    // int attribute1;
+    // double attribute2;
+    // std::string attribute3;
 /**
  * module convolution #( // Declaring convolution as a parameterized module
     // Parameter list BEGINS
@@ -41,11 +42,14 @@ private:
     output reg [3:0] out     // 4-bit output
 );
  */
+    int MAC(int weight_val, int kernel_val, int running_sum);
+
+    // void padding_handler(); // Function to handle padding
 public:
     // PART 1 STARTS HERE: Constructor and Destructor Implementation:
     // Main Constructor Implementation:
-    Convolver(int N, int K, int S, int WIDTH, int Q, const vector<vector<int>>& kernel, const vector<vector<int>>& input)
-        : N(N), K(K), S(S), WIDTH(WIDTH), Q(Q), kernel(kernel), input(input) {
+    Convolver(int N, int K, int S, int WIDTH, int Q, const vector<vector<int>>& kernel, const vector<vector<int>>& input, bool use_padding)
+        : N(N), K(K), S(S), WIDTH(WIDTH), Q(Q), kernel(kernel), input(input), use_padding(use_padding) {
         // Any speConstructor Implementation
 
     }
@@ -54,7 +58,7 @@ public:
     //     : kernel(kernel), input(input), stride_size(stride_size), attribute1(a1), attribute2(a2), attribute3(a3) {}
 
     // Default constructor
-    Convolver() : kernel(vector<vector<int>>(1, vector<int>(1, 0))), attribute1(0), attribute2(0.0), attribute3("default") {}
+    Convolver() : kernel(vector<vector<int>>(1, vector<int>(1, 0))) {}
 
     // Destructor
     ~Convolver() {}

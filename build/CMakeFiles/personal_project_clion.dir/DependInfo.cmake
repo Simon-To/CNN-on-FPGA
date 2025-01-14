@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp" "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o" "gcc" "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o.d"
+  "/Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp" "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o" "gcc" "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o.d"
+  "/Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp" "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o" "gcc" "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

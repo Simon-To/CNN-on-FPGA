@@ -129,29 +129,53 @@ personal_project_clion/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/build
 .PHONY : personal_project_clion/fast
 
-Logic_Verification/Convolver_CNN/convolver_cpp_imp.o: Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o
-.PHONY : Logic_Verification/Convolver_CNN/convolver_cpp_imp.o
+Logic_Verification/Convolver_CNN/Convolver.o: Logic_Verification/Convolver_CNN/Convolver.cpp.o
+.PHONY : Logic_Verification/Convolver_CNN/Convolver.o
 
 # target to build an object file
-Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o
-.PHONY : Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.o
+Logic_Verification/Convolver_CNN/Convolver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o
+.PHONY : Logic_Verification/Convolver_CNN/Convolver.cpp.o
 
-Logic_Verification/Convolver_CNN/convolver_cpp_imp.i: Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i
-.PHONY : Logic_Verification/Convolver_CNN/convolver_cpp_imp.i
+Logic_Verification/Convolver_CNN/Convolver.i: Logic_Verification/Convolver_CNN/Convolver.cpp.i
+.PHONY : Logic_Verification/Convolver_CNN/Convolver.i
 
 # target to preprocess a source file
-Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i
-.PHONY : Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.i
+Logic_Verification/Convolver_CNN/Convolver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.i
+.PHONY : Logic_Verification/Convolver_CNN/Convolver.cpp.i
 
-Logic_Verification/Convolver_CNN/convolver_cpp_imp.s: Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s
-.PHONY : Logic_Verification/Convolver_CNN/convolver_cpp_imp.s
+Logic_Verification/Convolver_CNN/Convolver.s: Logic_Verification/Convolver_CNN/Convolver.cpp.s
+.PHONY : Logic_Verification/Convolver_CNN/Convolver.s
 
 # target to generate assembly for a file
-Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s
-.PHONY : Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp.s
+Logic_Verification/Convolver_CNN/Convolver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.s
+.PHONY : Logic_Verification/Convolver_CNN/Convolver.cpp.s
+
+Logic_Verification/Convolver_CNN/main.o: Logic_Verification/Convolver_CNN/main.cpp.o
+.PHONY : Logic_Verification/Convolver_CNN/main.o
+
+# target to build an object file
+Logic_Verification/Convolver_CNN/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o
+.PHONY : Logic_Verification/Convolver_CNN/main.cpp.o
+
+Logic_Verification/Convolver_CNN/main.i: Logic_Verification/Convolver_CNN/main.cpp.i
+.PHONY : Logic_Verification/Convolver_CNN/main.i
+
+# target to preprocess a source file
+Logic_Verification/Convolver_CNN/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.i
+.PHONY : Logic_Verification/Convolver_CNN/main.cpp.i
+
+Logic_Verification/Convolver_CNN/main.s: Logic_Verification/Convolver_CNN/main.cpp.s
+.PHONY : Logic_Verification/Convolver_CNN/main.s
+
+# target to generate assembly for a file
+Logic_Verification/Convolver_CNN/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/personal_project_clion.dir/build.make CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.s
+.PHONY : Logic_Verification/Convolver_CNN/main.cpp.s
 
 # Help Target
 help:
@@ -162,9 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... personal_project_clion"
-	@echo "... Logic_Verification/Convolver_CNN/convolver_cpp_imp.o"
-	@echo "... Logic_Verification/Convolver_CNN/convolver_cpp_imp.i"
-	@echo "... Logic_Verification/Convolver_CNN/convolver_cpp_imp.s"
+	@echo "... Logic_Verification/Convolver_CNN/Convolver.o"
+	@echo "... Logic_Verification/Convolver_CNN/Convolver.i"
+	@echo "... Logic_Verification/Convolver_CNN/Convolver.s"
+	@echo "... Logic_Verification/Convolver_CNN/main.o"
+	@echo "... Logic_Verification/Convolver_CNN/main.i"
+	@echo "... Logic_Verification/Convolver_CNN/main.s"
 .PHONY : help
 
 

@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 find_package(OpenCV REQUIRED)
 
 add_executable(personal_project_clion
-        Logic_Verification/Convolver_CNN/convolver_cpp_imp.cpp)
+        Logic_Verification/Convolver_CNN/main.cpp
+        Logic_Verification/Convolver_CNN/Convolver.cpp)
 
 target_link_libraries(personal_project_clion
         ${OpenCV_LIBS}
