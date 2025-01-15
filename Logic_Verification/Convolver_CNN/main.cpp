@@ -45,7 +45,7 @@ int main() {
             {  0, -1,  3,  5,  9 },
             {  2,  2,  2,  2,  2 }
         },
-        false
+        true
     );
     
     vector<vector<int>> output = convolver.convolve();

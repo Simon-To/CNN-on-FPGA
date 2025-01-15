@@ -44,7 +44,9 @@ private:
  */
     int MAC(int weight_val, int kernel_val, int running_sum);
 
-    // void padding_handler(); // Function to handle padding
+    void padding_handler(); // Function to handle padding
+
+    vector<vector<int>> input_getter(); // Function to get input
 public:
     // PART 1 STARTS HERE: Constructor and Destructor Implementation:
     // Main Constructor Implementation:

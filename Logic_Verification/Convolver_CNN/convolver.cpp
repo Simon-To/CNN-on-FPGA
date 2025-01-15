@@ -5,11 +5,154 @@
 
 using namespace std;
 
+vector<vector<int>> Convolver::input_getter() {
+    return Convolver::input;
+}
+
 int Convolver::MAC(int weight_val, int kernel_val, int running_sum) {
     return weight_val * kernel_val + running_sum;
 }
 
+void Convolver::padding_handler() {
+    // Padding length is the base of the division: K/2
+    int padding_length = (Convolver::K)/2;
+
+    // int N = static_cast<int>(Convolver::input.size()); 
+    // If oldMat is NxN, we assume each row has oldMat[i].size() == N
+
+    // 1) Create new 2D vector of size (N+2B) x (N+2B), defaulted to 0
+    std::vector<std::vector<int>> padded_input(Convolver::N + 2*padding_length, std::vector<int>(Convolver::N + 2*padding_length, 0));
+
+    // 2) Copy oldMat into the center of newMat
+    //    For each row i in [0..N-1], copy the row into newMat[i+B], starting at column B
+    for (int i = 0; i < Convolver::N; ++i) {
+        // oldMat[i] is length N
+        // newMat[i + B] is length N + 2B
+        // Copy oldMat[i] into newMat[i + B], offset by B columns
+        std::copy(Convolver::input[i].begin(), Convolver::input[i].end(), padded_input[i + padding_length].begin() + padding_length);
+    }
+
+    // Handling mirror padding:
+    for (int i = 0; i < (Convolver::N + 2*padding_length); i++)
+    {
+        for (int j = 0; j < (Convolver::N + 2*padding_length); j++)
+        {
+            // Zone of Interest: where paddings situated in the new input matrix.
+
+            // Top Left Diagonal Reflection Zone
+            if ((i < padding_length) && (j < padding_length))
+            {
+                // I'm at [0][1], I want to mirror to [3 = (2 - 1) + (2 - 0)][2 = (2 - 1) + (2 - 1)]
+                padded_input[i][j] = Convolver::input[padding_length - i][padding_length - j];
+                cout << "i: " << i << " j: " << j << " padded_input[i][j]: " << padded_input[i][j] << endl;
+            }
+            
+            // Top Right Diagonal Reflection Zone
+            else if ((i < padding_length) && (j >= (Convolver::N + padding_length)))
+            {
+                // I'm at [0][1], I want to mirror to [3 = (2 - 1) + (2 - 0)][2 = (2 - 1) + (2 - 1)]
+
+                padded_input[i][j] = Convolver::input[padding_length - i][(Convolver::N - 1) - (j - Convolver::N - padding_length) - 1];
+                cout << "i: " << i << " j: " << j << " padded_input[i][j]: " << padded_input[i][j] << " = Convolver::input[" << (padding_length - i) << "][" << (Convolver::N - 1) - (j - Convolver::N - padding_length) - 1 << "]" << endl;
+            }
+
+            // Bottom Left Diagonal Reflection Zone
+            else if ((i >= (Convolver::N + padding_length)) && (j < padding_length))
+            {
+                padded_input[i][j] = Convolver::input[(Convolver::N - 1) - (i - Convolver::N - padding_length) - 1][padding_length - j];
+                cout << "i: " << i << " j: " << j << " padded_input[i][j]: " << padded_input[i][j] << endl;
+            }
+
+            // Bottom Right Diagonal Reflection Zone
+            else if ((i >= (Convolver::N + padding_length)) && (j >= (Convolver::N + padding_length)))
+            {
+                padded_input[i][j] = Convolver::input[(Convolver::N - 1) - (i - Convolver::N - padding_length) - 1][(Convolver::N - 1) - (j - Convolver::N - padding_length) - 1];
+                cout << "i: " << i << " j: " << j << " padded_input[i][j]: " << padded_input[i][j] << endl;
+            }
+
+
+
+            // Top Vertical Reflection Zone
+            else if ((i < padding_length) && (j >= padding_length) && (j < (Convolver::N + padding_length)))
+            {
+                padded_input[i][j] = Convolver::input[(padding_length - 1) - i][j - padding_length];
+            }
+
+            // Bottom Vertical Reflection Zone
+            else if ((i >= (Convolver::N + padding_length)) && (j >= padding_length) && (j < (Convolver::N + padding_length)))
+            {
+                padded_input[i][j] = Convolver::input[(Convolver::N - 1) - (i - Convolver::N - padding_length)][j - padding_length];
+            }
+
+
+
+            // Left Horizontal Reflection Zone
+            else if ((j < padding_length) && (i >= padding_length) && (i < (Convolver::N + padding_length)))
+            {
+                padded_input[i][j] = Convolver::input[i - padding_length][(padding_length - 1) - j];
+            }
+
+            // Right Horizontal Reflection Zone
+            else if ((j >= (Convolver::N + padding_length)) && (i >= padding_length) && (i < (Convolver::N + padding_length)))
+            {
+                padded_input[i][j] = Convolver::input[i - padding_length][(Convolver::N - 1) - (j - Convolver::N - padding_length)];
+            }
+            
+            // Center Zone
+            else
+            {
+                /* code */
+            }
+            
+        }
+        
+    }
+    
+
+    Convolver::N += 2*padding_length;
+
+    Convolver::input = padded_input;
+
+}
+
+
 vector<vector<int>> Convolver::convolve() {
+    // PADDING STARTS HERE
+
+    // cout << "Before padding: " << endl;
+
+    // for (size_t i = 0; i < Convolver::N; i++)
+    // {
+    //     for (size_t j = 0; j < Convolver::N; j++)
+    //     {
+    //         cout << Convolver::input[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+    if (Convolver::use_padding)
+    {
+        Convolver::padding_handler();
+    }
+    
+    
+
+    // cout << "Afters padding: " << endl;
+
+    // for (size_t i = 0; i < Convolver::N; i++)
+    // {
+    //     for (size_t j = 0; j < Convolver::N; j++)
+    //     {
+    //         cout << Convolver::input[i][j] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
+
+    // PADDING ENDS HERE
+
+
+
     // STEP 1 STARTS HERE: Declaration of output matrix and shift registers(INCORRECT)
     /*
     Note that this rounds down the result of division, which is the desirable behavior because 
@@ -17,9 +160,12 @@ vector<vector<int>> Convolver::convolve() {
     row therefore CANNOT exceed this the maximum number of kernel strides WITHIN the input
     matrix.
     */ 
+
+   
     int output_width = (Convolver::N - Convolver::K + 1)/Convolver::S;
     vector<vector<int>> output(output_width, vector<int>(output_width, 0));
 
+    
     /*
     The size of the shift register array is identical to the input matrix.
 
