@@ -4,7 +4,7 @@ Running a deployed Convolutional Neural Network on FPGA
 
 ## Update 09/23
 - Completed C++-based algorithm verification for Hyperbolic Tangent (tanh) powered by CORDIC.
-- Main concern lies in CORDIC's ability to estimate tanh(theta) where tanh(theta) is outside the range of [-2^-i, 2^-i]
+- Main concern lies in CORDIC's ability to estimate tanh(theta) where tanh(theta) is outside the range of $[-2^{-i}, 2^{-i}]$
   - After investigation, the reason of this issue is caused by the limitation of CORDIC algorithm. Since we restricted theta in range [-1, 1]
 - This concern might be solved by double iteration:
   - Double iteration can be implemented by creating a nested loop of two iterations within each outer iteration.
