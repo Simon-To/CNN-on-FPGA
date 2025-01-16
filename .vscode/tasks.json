@@ -33,7 +33,8 @@
             "args": [
                 "-o",
                 "output.vvp",
-                "convolver.v"
+                "convolver.v",
+                "mac_unit.v"
             ],
             "group": {
                 "kind": "build",
