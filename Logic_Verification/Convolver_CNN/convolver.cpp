@@ -237,7 +237,8 @@ vector<vector<int>> Convolver::convolve() {
                         // */
                         
                         // ACTIVE SECTION OPERATIONS STARTS HERE
-                        if ((k >= 0 && k <= (Convolver::K)) && (l >= 0 && l <= (Convolver::K))) {
+                        // if ((k >= 0 && k <= (Convolver::K)) && (l >= 0 && l <= (Convolver::K))) {
+                        if ((k >= 0 && k <= (Convolver::K - 1)) && (l >= 0 && l <= (Convolver::K - 1))) {
                             
                             if (l == 0) 
                             {
@@ -268,7 +269,10 @@ vector<vector<int>> Convolver::convolve() {
                                 the last element of the kernel (bottom right of the kernel). This
                                 means we have to determine if this result is a part of the output.
 
-                                So, give 
+                                Valid output trigger premises:
+                                - At the last element of the kernel
+                                    - k == (Convolver::K - 1)
+                                - 
                                 */
 
                                 int final_value = Convolver::MAC(kernel[k][l], input[i][j], shift_reg_old[k][l-1]);
@@ -332,6 +336,15 @@ vector<vector<int>> Convolver::convolve() {
                         t.join();
                     }
                 }
+            }
+
+            cout << "After feeding input[" << i << "][" << j << "]:" << endl;
+            for (const auto& row : shift_reg_new) {           // Loop over each row
+                for (const auto& elem : row) {        // Loop over each element in the row
+                    std::cout << elem << " ";
+                }
+                std::cout << "\n";  // Newline after each row
+                // cout << "Bruh" << endl;
             }
 
             // Update shift_reg_old by swapping with shift_reg_new:

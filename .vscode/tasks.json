@@ -33,6 +33,7 @@
             "args": [
                 "-o",
                 "output.vvp",
+                "convolver_tb.v",
                 "convolver.v",
                 "mac_unit.v"
             ],

@@ -42,6 +42,11 @@ Completed Environment setup for C++
 
 $ax^2 + bx + c = 0$
 
+## Update 2024/01/19
+- Completed Verilog implementation of Convolution Layer
+- Created a testbench to verify that the implementation is correct.
+  - Please see the convolver_tb.v files for more information about how the testing is done.
+  - Feel free to test it with other input and kernel matrices :)
 
 
 

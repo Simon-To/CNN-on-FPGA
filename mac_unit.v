@@ -13,32 +13,52 @@ module mac_unit #(
     input [M-1:0] a, // Multiplier
     input [M-1:0] b, // Multiplicand
     input [M-1:0] c, // Accumulator
-    output [M-1:0] out // 
+    // output [M-1:0] out 
+    // CHANGE NOTE 1: Changing the output from a wire to a register
+    // With this change, we're putting the responsibility of the storage
+    // of the output on the user of the module
+    // Implication: A register array is definition is required in the
+    // outer module to store the output of the MAC unit
+    // CHANGE NOTE 2: Changing the output from a register back to a wire
+    // We are exporting the calculate value straight to the shift register
+    // array element when the calculation is done.
+    output [(M-1):0] out // 
+    // output [(M-1):0] out // 
 );
 
-reg [M-1:0] temp_reg;
-always @(
-    posedge clk,
-    posedge rst
-) begin
-    if (rst) begin
-        // If asynchronous reset is on
-        temp_reg <= 0; // Reset the register to 0
-    end 
-    else if (clk_en) begin
-        // If the async reset is off and the clock is enabled
-        // Normal MAC operation is performed
-        temp_reg <= a * b + c;
-    end
-end
+assign out = a * b + c;
+
+// reg [M-1:0] temp_reg;
+// REFER TO CHANGE NOTE 1
+// REFER TO CHANGE NOTE 2
+// always @(
+//     // posedge clk or
+//     posedge clk,
+//     posedge rst
+// ) begin
+//     if (rst) begin
+//         // If asynchronous reset is on
+//         out <= 0; // Reset the register to 0
+//         // out = 0; // Reset the register to 0
+//         // REFER TO CHANGE NOTE 1
+//     end 
+//     else if (clk_en) begin
+//         // If the async reset is off and the clock is enabled
+//         // Normal MAC operation is performed
+//         out <= a * b + c;
+//         // out = a * b + c;
+//         // REFER TO CHANGE NOTE 1
+//     end
+// end
 
 
 // Note that temp_reg is directly assigned to out since temp_reg is 
 // updated sequentially
-assign out = temp_reg;
+// assign out = temp_reg;
+// REFER TO CHANGE NOTE 1
 
-initial begin
-    $display("MAC unit simulation started");
-end
+// initial begin
+//     $display("MAC unit simulation started");
+// end
     
 endmodule
