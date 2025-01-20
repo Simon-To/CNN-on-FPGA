@@ -1,0 +1,29 @@
+table {
+    border-collapse: collapse; /* Ensures borders don’t have extra spacing */
+    margin: 20px;
+  }
+  
+  td {
+    width: 120px;         /* Adjust as needed */
+    height: 60px;         /* Adjust as needed */
+    border: 1px solid #000;
+    position: relative;   /* Allows absolutely positioned elements inside */
+    padding: 4px;         /* Space inside the cell */
+  }
+  
+  /* Top-left corner style */
+  .top-left {
+    position: absolute;   /* Position relative to td */
+    top: 2px;             /* Spacing from top edge */
+    left: 2px;            /* Spacing from left edge */
+    font-size: 12px;      /* Adjust as needed */
+  }
+  
+  /* Bottom-right corner style */
+  .bottom-right {
+    position: absolute;   /* Position relative to td */
+    bottom: 2px;          /* Spacing from bottom edge */
+    right: 2px;           /* Spacing from right edge */
+    font-size: 12px;      /* Adjust as needed */
+  }
+  
