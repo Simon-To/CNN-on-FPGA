@@ -6,10 +6,14 @@ def generate_table(k, n):
     for y in range(n):
         row_cells = [f"a_{y}"]
         for x in range(k):
-            cell_content = f"+ $W_{x} * a_{y}$"
+            cell_content = ""
+            if x == 0:
+                cell_content = f"0 + $W_{x} * a_{y}$"
+            else:
+                cell_content = f"+ $W_{x} * a_{y}$"
             # Example highlight condition: highlight if x=1 & y=2
-            if x == 1 and y == 2:
-                cell_content = f"<mark>{cell_content}</mark>"
+            if x == y:
+                cell_content = f"<mark style='background-color: red; color: white;'>{cell_content}</mark>"
             row_cells.append(cell_content)
         rows.append(row_cells)
 
@@ -26,4 +30,4 @@ def generate_table(k, n):
     return "\n".join(lines)
 
 if __name__ == "__main__":
-    print(generate_table(k=3, n=4))
+    print(generate_table(k=9, n=16))

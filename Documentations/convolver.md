@@ -159,62 +159,35 @@ Remember that each step of the convolution produces an element of the output mat
 In the first step, the output that we want to produce is:
 $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2 + W_3 \times a_4 + W_4 \times a_5 + W_5 \times a_6 + W_6 \times a_8 + W_7 \times a_9 + W_8 \times a_10$
 
-Notice that for the first three additions, $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2$, we just have to forward the output of the 0th MAC as the input running sum of the 1st MAC, because the value of $a_1$ would be provided in clock 1. For the same reason, the output of the 1st MAC as the input running sum of the 2nd MAC.
+Notice that for the first row, $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2$, we just have to forward the output of the 0th MAC as the input running sum of the 1st MAC, because the value of $a_1$ would be provided in clock 1. For the same reason, the output of the 1st MAC as the input running sum of the 2nd MAC.
 
 However, this wouldn't apply to the next MAC, which would possess the kernel value of $W_3$, because, as the formula has shown, it needs the value of $a_4$. To get the value of $a_4$, the 3rd MAC will have to get to clock 4 to produce its correct sum. This happens because the size of the input image matrix is 4x4, while the kernel's size is 3x3. So, after every row of convolution, the following start-of-the-row MAC has to wait for $4-3=1$ clock to get its correct input matrix value.
 
-But where does a start-of-the-row MAC get its input running sum from? For example, for the It can't just get it from 
+But where does a start-of-the-row MAC get its input running sum from? For the previous scenario, the output of the first row is $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2$. Like any sequential circuit, without registering, its value will be gone. In the immediate clock after $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2$, it would've been gone. Since we want it to stay for $4-3=1$ clock, we need $4-3=1$ shift registers. Since every start-of-the-row MAC will face this issue (except the 0th one of course), every row will need $4-3=1$ shift registers after the end-of-the-row MAC. To generalize this, if the input image matrix has the size of NxN, and the kernel has the size of KxK, then we need (N-K) shift registers for every row except the very last one, where the output of the convolution is produced. You can find the shift registers in the architecture diagram earlier in this passage too.
 
-|  | W_0 | W_1 | W_2 |
-| --- | --- | --- | --- |
-| a_0 | + W_0 * a_0 | + W_1 * a_0 | + W_2 * a_0 |
-| a_1 | + W_0 * a_1 | + W_1 * a_1 | + W_2 * a_1 |
-| a_2 | + W_0 * a_2 | <mark>+ W_1 * a_2</mark> | + W_2 * a_2 |
-| a_3 | + W_0 * a_3 | + W_1 * a_3 | + W_2 * a_3 |
+<!-- ### Computation Thread
 
-|  | W_0 | W_1 | W_2 |
-| --- | --- | --- | --- |
-| a_0 | + $W_0 * a_0$ | + $W_1 * a_0$ | + $W_2 * a_0$ |
-| a_1 | + $W_0 * a_1$ | + $W_1 * a_1$ | + $W_2 * a_1$ |
-| a_2 | + $W_0 * a_2$ | <mark>+ $W_1 * a_2$</mark> | + $W_2 * a_2$ |
-| a_3 | + $W_0 * a_3$ | + $W_1 * a_3$ | + $W_2 * a_3$ |
+|  | W_0 | W_1 | W_2 | W_3 | W_4 | W_5 | W_6 | W_7 | W_8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| a_0 | <mark style='background-color: red; color: white;'>0 + $W_0 * a_0$</mark> | + $W_1 * a_0$ | + $W_2 * a_0$ | + $W_3 * a_0$ | + $W_4 * a_0$ | + $W_5 * a_0$ | + $W_6 * a_0$ | + $W_7 * a_0$ | + $W_8 * a_0$ |
+| a_1 | 0 + $W_0 * a_1$ | <mark style='background-color: red; color: white;'>+ $W_1 * a_1$</mark> | + $W_2 * a_1$ | + $W_3 * a_1$ | + $W_4 * a_1$ | + $W_5 * a_1$ | + $W_6 * a_1$ | + $W_7 * a_1$ | + $W_8 * a_1$ |
+| a_2 | 0 + $W_0 * a_2$ | + $W_1 * a_2$ | <mark style='background-color: red; color: white;'>+ $W_2 * a_2$</mark> | + $W_3 * a_2$ | + $W_4 * a_2$ | + $W_5 * a_2$ | + $W_6 * a_2$ | + $W_7 * a_2$ | + $W_8 * a_2$ |
+| a_3 | 0 + $W_0 * a_3$ | + $W_1 * a_3$ | + $W_2 * a_3$ | <mark style='background-color: red; color: white;'>+ $W_3 * a_3$</mark> | + $W_4 * a_3$ | + $W_5 * a_3$ | + $W_6 * a_3$ | + $W_7 * a_3$ | + $W_8 * a_3$ |
+| a_4 | 0 + $W_0 * a_4$ | + $W_1 * a_4$ | + $W_2 * a_4$ | + $W_3 * a_4$ | <mark style='background-color: red; color: white;'>+ $W_4 * a_4$</mark> | + $W_5 * a_4$ | + $W_6 * a_4$ | + $W_7 * a_4$ | + $W_8 * a_4$ |
+| a_5 | 0 + $W_0 * a_5$ | + $W_1 * a_5$ | + $W_2 * a_5$ | + $W_3 * a_5$ | + $W_4 * a_5$ | <mark style='background-color: red; color: white;'>+ $W_5 * a_5$</mark> | + $W_6 * a_5$ | + $W_7 * a_5$ | + $W_8 * a_5$ |
+| a_6 | 0 + $W_0 * a_6$ | + $W_1 * a_6$ | + $W_2 * a_6$ | + $W_3 * a_6$ | + $W_4 * a_6$ | + $W_5 * a_6$ | <mark style='background-color: red; color: white;'>+ $W_6 * a_6$</mark> | + $W_7 * a_6$ | + $W_8 * a_6$ |
+| a_7 | 0 + $W_0 * a_7$ | + $W_1 * a_7$ | + $W_2 * a_7$ | + $W_3 * a_7$ | + $W_4 * a_7$ | + $W_5 * a_7$ | + $W_6 * a_7$ | <mark style='background-color: red; color: white;'>+ $W_7 * a_7$</mark> | + $W_8 * a_7$ |
+| a_8 | 0 + $W_0 * a_8$ | + $W_1 * a_8$ | + $W_2 * a_8$ | + $W_3 * a_8$ | + $W_4 * a_8$ | + $W_5 * a_8$ | + $W_6 * a_8$ | + $W_7 * a_8$ | <mark style='background-color: red; color: white;'>+ $W_8 * a_8$</mark> |
+| a_9 | 0 + $W_0 * a_9$ | + $W_1 * a_9$ | + $W_2 * a_9$ | + $W_3 * a_9$ | + $W_4 * a_9$ | + $W_5 * a_9$ | + $W_6 * a_9$ | + $W_7 * a_9$ | + $W_8 * a_9$ |
+| a_10 | 0 + $W_0 * a_10$ | + $W_1 * a_10$ | + $W_2 * a_10$ | + $W_3 * a_10$ | + $W_4 * a_10$ | + $W_5 * a_10$ | + $W_6 * a_10$ | + $W_7 * a_10$ | + $W_8 * a_10$ |
+| a_11 | 0 + $W_0 * a_11$ | + $W_1 * a_11$ | + $W_2 * a_11$ | + $W_3 * a_11$ | + $W_4 * a_11$ | + $W_5 * a_11$ | + $W_6 * a_11$ | + $W_7 * a_11$ | + $W_8 * a_11$ |
+| a_12 | 0 + $W_0 * a_12$ | + $W_1 * a_12$ | + $W_2 * a_12$ | + $W_3 * a_12$ | + $W_4 * a_12$ | + $W_5 * a_12$ | + $W_6 * a_12$ | + $W_7 * a_12$ | + $W_8 * a_12$ |
+| a_13 | 0 + $W_0 * a_13$ | + $W_1 * a_13$ | + $W_2 * a_13$ | + $W_3 * a_13$ | + $W_4 * a_13$ | + $W_5 * a_13$ | + $W_6 * a_13$ | + $W_7 * a_13$ | + $W_8 * a_13$ |
+| a_14 | 0 + $W_0 * a_14$ | + $W_1 * a_14$ | + $W_2 * a_14$ | + $W_3 * a_14$ | + $W_4 * a_14$ | + $W_5 * a_14$ | + $W_6 * a_14$ | + $W_7 * a_14$ | + $W_8 * a_14$ |
+| a_15 | 0 + $W_0 * a_15$ | + $W_1 * a_15$ | + $W_2 * a_15$ | + $W_3 * a_15$ | + $W_4 * a_15$ | + $W_5 * a_15$ | + $W_6 * a_15$ | + $W_7 * a_15$ | + $W_8 * a_15$ | -->
 
-expressed as:
+### Summary
 
-𝑆
-(
-𝑥
-,
-𝑦
-)
-=
-∑
-𝑚
-∑
-𝑛
-𝐼
-(
-𝑥
-+
-𝑚
-,
-𝑦
-+
-𝑛
-)
-⋅
-𝐾
-(
-𝑚
-,
-𝑛
-)
-S(x,y)= 
-m
-∑
-​
-  
-n
-∑
-​
- I(x+m,y+n)⋅K(m,n)
+In terms of space, we need KxK MAC units and (K-1)*(N-K) shift registers in out circuit to perform all computations. Since each MAC unit require a register anyway, we will need KxK multipliers and adders, in addition to K * (N-K) + K registers.
+
+In terms of time, we need to feed every input matrix's element to the circuit, so we require NxN clock periods to produce all elements of the output matrix.
