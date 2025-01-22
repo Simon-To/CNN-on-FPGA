@@ -107,33 +107,38 @@ Instead of placing the kernel on top of the input matrix and produce the output 
 
 Firstly, I have to pay tribute to the blog post that inspired this implementation: https://thedatabus.in/convolver
 
-In the explanation of the algorithm, the author included a great visualization of the architecture for the case where N=4, K=3. I've included it below:
+To better explain the algorithm, let's look at a simpler scenario where out input image only has a size of 4x4, and the kernel remain 3x3. As a result, the first of the convolution algorithm will look like below:
+![Alt Text](images/N_4.png "Optional Title")
 
+In the explanation of the algorithm, the author included a great visualization of the architecture for the case where N=4, K=3 (The case of our discussion). I've included it below:
 
 ![Alt Text](images/convolver.jpg "Optional Title")
 
-Basically, there are as many "muliply and add the result to the running sum" units as the total number of kernels (KxK). We call theses units MAC (Multiply-Accumulate) units.
 
-In each clock, an element of the input matrix is fed to ALL KxK MACs. This means for each time step, we're producing the following:
+Basically, there are as many "muliply and add the result to the running sum" units as the total number of kernels (KxK). We call theses units MAC (Multiply-Accumulate) units.
+$a \times b$
+In each clock, an element of the input matrix is fed to ALL KxK MACs. In another word, at any given clock cycle, all MACs are provided with the SAME element of the Input matrix.
+
+As a result, for each time step, we're producing the following:
 
 |  | W_0 | W_1 | W_2 | W_3 | W_4 | W_5 | W_6 | W_7 | W_8 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| a_0 | + W_0 * a_0 | + W_1 * a_0 | + W_2 * a_0 | + W_3 * a_0 | + W_4 * a_0 | + W_5 * a_0 | + W_6 * a_0 | + W_7 * a_0 | + W_8 * a_0 |
-| a_1 | + W_0 * a_1 | + W_1 * a_1 | + W_2 * a_1 | + W_3 * a_1 | + W_4 * a_1 | + W_5 * a_1 | + W_6 * a_1 | + W_7 * a_1 | + W_8 * a_1 |
-| a_2 | + W_0 * a_2 | + W_1 * a_2 | + W_2 * a_2 | + W_3 * a_2 | + W_4 * a_2 | + W_5 * a_2 | + W_6 * a_2 | + W_7 * a_2 | + W_8 * a_2 |
-| a_3 | + W_0 * a_3 | + W_1 * a_3 | + W_2 * a_3 | + W_3 * a_3 | + W_4 * a_3 | + W_5 * a_3 | + W_6 * a_3 | + W_7 * a_3 | + W_8 * a_3 |
-| a_4 | + W_0 * a_4 | + W_1 * a_4 | + W_2 * a_4 | + W_3 * a_4 | + W_4 * a_4 | + W_5 * a_4 | + W_6 * a_4 | + W_7 * a_4 | + W_8 * a_4 |
-| a_5 | + W_0 * a_5 | + W_1 * a_5 | + W_2 * a_5 | + W_3 * a_5 | + W_4 * a_5 | + W_5 * a_5 | + W_6 * a_5 | + W_7 * a_5 | + W_8 * a_5 |
-| a_6 | + W_0 * a_6 | + W_1 * a_6 | + W_2 * a_6 | + W_3 * a_6 | + W_4 * a_6 | + W_5 * a_6 | + W_6 * a_6 | + W_7 * a_6 | + W_8 * a_6 |
-| a_7 | + W_0 * a_7 | + W_1 * a_7 | + W_2 * a_7 | + W_3 * a_7 | + W_4 * a_7 | + W_5 * a_7 | + W_6 * a_7 | + W_7 * a_7 | + W_8 * a_7 |
-| a_8 | + W_0 * a_8 | + W_1 * a_8 | + W_2 * a_8 | + W_3 * a_8 | + W_4 * a_8 | + W_5 * a_8 | + W_6 * a_8 | + W_7 * a_8 | + W_8 * a_8 |
-| a_9 | + W_0 * a_9 | + W_1 * a_9 | + W_2 * a_9 | + W_3 * a_9 | + W_4 * a_9 | + W_5 * a_9 | + W_6 * a_9 | + W_7 * a_9 | + W_8 * a_9 |
-| a_10 | + W_0 * a_10 | + W_1 * a_10 | + W_2 * a_10 | + W_3 * a_10 | + W_4 * a_10 | + W_5 * a_10 | + W_6 * a_10 | + W_7 * a_10 | + W_8 * a_10 |
-| a_11 | + W_0 * a_11 | + W_1 * a_11 | + W_2 * a_11 | + W_3 * a_11 | + W_4 * a_11 | + W_5 * a_11 | + W_6 * a_11 | + W_7 * a_11 | + W_8 * a_11 |
-| a_12 | + W_0 * a_12 | + W_1 * a_12 | + W_2 * a_12 | + W_3 * a_12 | + W_4 * a_12 | + W_5 * a_12 | + W_6 * a_12 | + W_7 * a_12 | + W_8 * a_12 |
-| a_13 | + W_0 * a_13 | + W_1 * a_13 | + W_2 * a_13 | + W_3 * a_13 | + W_4 * a_13 | + W_5 * a_13 | + W_6 * a_13 | + W_7 * a_13 | + W_8 * a_13 |
-| a_14 | + W_0 * a_14 | + W_1 * a_14 | + W_2 * a_14 | + W_3 * a_14 | + W_4 * a_14 | + W_5 * a_14 | + W_6 * a_14 | + W_7 * a_14 | + W_8 * a_14 |
-| a_15 | + W_0 * a_15 | + W_1 * a_15 | + W_2 * a_15 | + W_3 * a_15 | + W_4 * a_15 | + W_5 * a_15 | + W_6 * a_15 | + W_7 * a_15 | + W_8 * a_15 |
+| $a_{0}$ | $ + W_{0} \times a_{0}$ | $ + W_{1} \times a_{0}$ | $ + W_{2} \times a_{0}$ | $ + W_{3} \times a_{0}$ | $ + W_{4} \times a_{0}$ | $ + W_{5} \times a_{0}$ | $ + W_{6} \times a_{0}$ | $ + W_{7} \times a_{0}$ | $ + W_{8} \times a_{0}$ |
+| $a_{1}$ | $ + W_{0} \times a_{1}$ | $ + W_{1} \times a_{1}$ | $ + W_{2} \times a_{1}$ | $ + W_{3} \times a_{1}$ | $ + W_{4} \times a_{1}$ | $ + W_{5} \times a_{1}$ | $ + W_{6} \times a_{1}$ | $ + W_{7} \times a_{1}$ | $ + W_{8} \times a_{1}$ |
+| $a_{2}$ | $ + W_{0} \times a_{2}$ | $ + W_{1} \times a_{2}$ | $ + W_{2} \times a_{2}$ | $ + W_{3} \times a_{2}$ | $ + W_{4} \times a_{2}$ | $ + W_{5} \times a_{2}$ | $ + W_{6} \times a_{2}$ | $ + W_{7} \times a_{2}$ | $ + W_{8} \times a_{2}$ |
+| $a_{3}$ | $ + W_{0} \times a_{3}$ | $ + W_{1} \times a_{3}$ | $ + W_{2} \times a_{3}$ | $ + W_{3} \times a_{3}$ | $ + W_{4} \times a_{3}$ | $ + W_{5} \times a_{3}$ | $ + W_{6} \times a_{3}$ | $ + W_{7} \times a_{3}$ | $ + W_{8} \times a_{3}$ |
+| $a_{4}$ | $ + W_{0} \times a_{4}$ | $ + W_{1} \times a_{4}$ | $ + W_{2} \times a_{4}$ | $ + W_{3} \times a_{4}$ | $ + W_{4} \times a_{4}$ | $ + W_{5} \times a_{4}$ | $ + W_{6} \times a_{4}$ | $ + W_{7} \times a_{4}$ | $ + W_{8} \times a_{4}$ |
+| $a_{5}$ | $ + W_{0} \times a_{5}$ | $ + W_{1} \times a_{5}$ | $ + W_{2} \times a_{5}$ | $ + W_{3} \times a_{5}$ | $ + W_{4} \times a_{5}$ | $ + W_{5} \times a_{5}$ | $ + W_{6} \times a_{5}$ | $ + W_{7} \times a_{5}$ | $ + W_{8} \times a_{5}$ |
+| $a_{6}$ | $ + W_{0} \times a_{6}$ | $ + W_{1} \times a_{6}$ | $ + W_{2} \times a_{6}$ | $ + W_{3} \times a_{6}$ | $ + W_{4} \times a_{6}$ | $ + W_{5} \times a_{6}$ | $ + W_{6} \times a_{6}$ | $ + W_{7} \times a_{6}$ | $ + W_{8} \times a_{6}$ |
+| $a_{7}$ | $ + W_{0} \times a_{7}$ | $ + W_{1} \times a_{7}$ | $ + W_{2} \times a_{7}$ | $ + W_{3} \times a_{7}$ | $ + W_{4} \times a_{7}$ | $ + W_{5} \times a_{7}$ | $ + W_{6} \times a_{7}$ | $ + W_{7} \times a_{7}$ | $ + W_{8} \times a_{7}$ |
+| $a_{8}$ | $ + W_{0} \times a_{8}$ | $ + W_{1} \times a_{8}$ | $ + W_{2} \times a_{8}$ | $ + W_{3} \times a_{8}$ | $ + W_{4} \times a_{8}$ | $ + W_{5} \times a_{8}$ | $ + W_{6} \times a_{8}$ | $ + W_{7} \times a_{8}$ | $ + W_{8} \times a_{8}$ |
+| $a_{9}$ | $ + W_{0} \times a_{9}$ | $ + W_{1} \times a_{9}$ | $ + W_{2} \times a_{9}$ | $ + W_{3} \times a_{9}$ | $ + W_{4} \times a_{9}$ | $ + W_{5} \times a_{9}$ | $ + W_{6} \times a_{9}$ | $ + W_{7} \times a_{9}$ | $ + W_{8} \times a_{9}$ |
+| $a_{10}$ | $ + W_{0} \times a_{10}$ | $ + W_{1} \times a_{10}$ | $ + W_{2} \times a_{10}$ | $ + W_{3} \times a_{10}$ | $ + W_{4} \times a_{10}$ | $ + W_{5} \times a_{10}$ | $ + W_{6} \times a_{10}$ | $ + W_{7} \times a_{10}$ | $ + W_{8} \times a_{10}$ |
+| $a_{11}$ | $ + W_{0} \times a_{11}$ | $ + W_{1} \times a_{11}$ | $ + W_{2} \times a_{11}$ | $ + W_{3} \times a_{11}$ | $ + W_{4} \times a_{11}$ | $ + W_{5} \times a_{11}$ | $ + W_{6} \times a_{11}$ | $ + W_{7} \times a_{11}$ | $ + W_{8} \times a_{11}$ |
+| $a_{12}$ | $ + W_{0} \times a_{12}$ | $ + W_{1} \times a_{12}$ | $ + W_{2} \times a_{12}$ | $ + W_{3} \times a_{12}$ | $ + W_{4} \times a_{12}$ | $ + W_{5} \times a_{12}$ | $ + W_{6} \times a_{12}$ | $ + W_{7} \times a_{12}$ | $ + W_{8} \times a_{12}$ |
+| $a_{13}$ | $ + W_{0} \times a_{13}$ | $ + W_{1} \times a_{13}$ | $ + W_{2} \times a_{13}$ | $ + W_{3} \times a_{13}$ | $ + W_{4} \times a_{13}$ | $ + W_{5} \times a_{13}$ | $ + W_{6} \times a_{13}$ | $ + W_{7} \times a_{13}$ | $ + W_{8} \times a_{13}$ |
+| $a_{14}$ | $ + W_{0} \times a_{14}$ | $ + W_{1} \times a_{14}$ | $ + W_{2} \times a_{14}$ | $ + W_{3} \times a_{14}$ | $ + W_{4} \times a_{14}$ | $ + W_{5} \times a_{14}$ | $ + W_{6} \times a_{14}$ | $ + W_{7} \times a_{14}$ | $ + W_{8} \times a_{14}$ |
+| $a_{15}$ | $ + W_{0} \times a_{15}$ | $ + W_{1} \times a_{15}$ | $ + W_{2} \times a_{15}$ | $ + W_{3} \times a_{15}$ | $ + W_{4} \times a_{15}$ | $ + W_{5} \times a_{15}$ | $ + W_{6} \times a_{15}$ | $ + W_{7} \times a_{15}$ | $ + W_{8} \times a_{15}$ |
 
 
 

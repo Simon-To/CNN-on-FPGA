@@ -16,7 +16,7 @@ def generate_table(k, n):
     #    in that row has "+ W_x * a_y"
     rows = []
     for y in range(n*n):
-        row_cells = [f"a_{y}"] + [f"+ W_{x} * a_{y}" for x in range(k*k)]
+        row_cells = [f"$a_{{{y}}}$"] + [f"$ + W_{{{x}}} \\times a_{{{y}}}$" for x in range(k*k)]
         rows.append(row_cells)
     
     # A small helper to convert a list of cells to a Markdown table line
