@@ -3,7 +3,7 @@ Running a deployed Convolutional Neural Network on FPGA
 
 ## For visitors
 
-Currently, the convolution layer of this project is completed and well docuemented.
+Currently, the convolution layer of this project is completed and well documented.
 
 If you would like to know the underlying algorithm and architecture of the convolution layer, please read [this PDF document](./convolver.pdf). If you found the auto-generated PDF's word sizing too small, you can try the original Markdown's preview [here](./Documentations/convolver.md). (The only difference is that the tables in Markdown preview is very faint, so you can refer back to the PDF if you want to read the colored tables).
 
