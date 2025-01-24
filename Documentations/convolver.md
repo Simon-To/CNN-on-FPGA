@@ -165,26 +165,43 @@ However, this wouldn't apply to the next MAC, which would possess the kernel val
 
 But where does a start-of-the-row MAC get its input running sum from? For the previous scenario, the output of the first row is $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2$. Like any sequential circuit, without registering, its value will be gone. In the immediate clock after $W_0 \times a_0 + W_1 \times a_1 + W_2 \times a_2$, it would've been gone. Since we want it to stay for $4-3=1$ clock, we need $4-3=1$ shift registers. Since every start-of-the-row MAC will face this issue (except the 0th one of course), every row will need $4-3=1$ shift registers after the end-of-the-row MAC. To generalize this, if the input image matrix has the size of NxN, and the kernel has the size of KxK, then we need (N-K) shift registers for every row except the very last one, where the output of the convolution is produced. You can find the shift registers in the architecture diagram earlier in this passage too.
 
-<!-- ### Computation Thread
+### Computation Thread
 
-|  | W_0 | W_1 | W_2 | W_3 | W_4 | W_5 | W_6 | W_7 | W_8 |
+The table below shows how each output matrix's element was calculated. Please note that each thread is highlighted with a unique color specified in the legend below.
+
+| Highlight Color | Output Matrix Element |
+|-------|---------|
+| <span style="display:inline-block;width:15px;height:15px;background-color: rgb(255, 255, 0);"></span> | (0, 0) |
+| <span style="display:inline-block;width:15px;height:15px;background-color: rgb(191, 255, 0);"></span> | (0, 1) |
+| <span style="display:inline-block;width:15px;height:15px;background-color: rgb(127, 255, 0);"></span> | (1, 0) |
+| <span style="display:inline-block;width:15px;height:15px;background-color: rgb(63, 255, 0);"></span> | (1, 1) |
+
+To follow a particular thread, simply follow the output matrix element's highlighting color from the top of the table to the bottom (in temporal order).
+
+Notice that the yellow thread is identical to the one that we've focused our dicussion on previously. That thread, as mentioned, produces the top left (0,0) element of the output matrix.
+
+
+|  | $W_{0}$ | $W_{1}$ | $W_{2}$ | $W_{3}$ | $W_{4}$ | $W_{5}$ | $W_{6}$ | $W_{7}$ | $W_{8}$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| a_0 | <mark style='background-color: red; color: white;'>0 + $W_0 * a_0$</mark> | + $W_1 * a_0$ | + $W_2 * a_0$ | + $W_3 * a_0$ | + $W_4 * a_0$ | + $W_5 * a_0$ | + $W_6 * a_0$ | + $W_7 * a_0$ | + $W_8 * a_0$ |
-| a_1 | 0 + $W_0 * a_1$ | <mark style='background-color: red; color: white;'>+ $W_1 * a_1$</mark> | + $W_2 * a_1$ | + $W_3 * a_1$ | + $W_4 * a_1$ | + $W_5 * a_1$ | + $W_6 * a_1$ | + $W_7 * a_1$ | + $W_8 * a_1$ |
-| a_2 | 0 + $W_0 * a_2$ | + $W_1 * a_2$ | <mark style='background-color: red; color: white;'>+ $W_2 * a_2$</mark> | + $W_3 * a_2$ | + $W_4 * a_2$ | + $W_5 * a_2$ | + $W_6 * a_2$ | + $W_7 * a_2$ | + $W_8 * a_2$ |
-| a_3 | 0 + $W_0 * a_3$ | + $W_1 * a_3$ | + $W_2 * a_3$ | <mark style='background-color: red; color: white;'>+ $W_3 * a_3$</mark> | + $W_4 * a_3$ | + $W_5 * a_3$ | + $W_6 * a_3$ | + $W_7 * a_3$ | + $W_8 * a_3$ |
-| a_4 | 0 + $W_0 * a_4$ | + $W_1 * a_4$ | + $W_2 * a_4$ | + $W_3 * a_4$ | <mark style='background-color: red; color: white;'>+ $W_4 * a_4$</mark> | + $W_5 * a_4$ | + $W_6 * a_4$ | + $W_7 * a_4$ | + $W_8 * a_4$ |
-| a_5 | 0 + $W_0 * a_5$ | + $W_1 * a_5$ | + $W_2 * a_5$ | + $W_3 * a_5$ | + $W_4 * a_5$ | <mark style='background-color: red; color: white;'>+ $W_5 * a_5$</mark> | + $W_6 * a_5$ | + $W_7 * a_5$ | + $W_8 * a_5$ |
-| a_6 | 0 + $W_0 * a_6$ | + $W_1 * a_6$ | + $W_2 * a_6$ | + $W_3 * a_6$ | + $W_4 * a_6$ | + $W_5 * a_6$ | <mark style='background-color: red; color: white;'>+ $W_6 * a_6$</mark> | + $W_7 * a_6$ | + $W_8 * a_6$ |
-| a_7 | 0 + $W_0 * a_7$ | + $W_1 * a_7$ | + $W_2 * a_7$ | + $W_3 * a_7$ | + $W_4 * a_7$ | + $W_5 * a_7$ | + $W_6 * a_7$ | <mark style='background-color: red; color: white;'>+ $W_7 * a_7$</mark> | + $W_8 * a_7$ |
-| a_8 | 0 + $W_0 * a_8$ | + $W_1 * a_8$ | + $W_2 * a_8$ | + $W_3 * a_8$ | + $W_4 * a_8$ | + $W_5 * a_8$ | + $W_6 * a_8$ | + $W_7 * a_8$ | <mark style='background-color: red; color: white;'>+ $W_8 * a_8$</mark> |
-| a_9 | 0 + $W_0 * a_9$ | + $W_1 * a_9$ | + $W_2 * a_9$ | + $W_3 * a_9$ | + $W_4 * a_9$ | + $W_5 * a_9$ | + $W_6 * a_9$ | + $W_7 * a_9$ | + $W_8 * a_9$ |
-| a_10 | 0 + $W_0 * a_10$ | + $W_1 * a_10$ | + $W_2 * a_10$ | + $W_3 * a_10$ | + $W_4 * a_10$ | + $W_5 * a_10$ | + $W_6 * a_10$ | + $W_7 * a_10$ | + $W_8 * a_10$ |
-| a_11 | 0 + $W_0 * a_11$ | + $W_1 * a_11$ | + $W_2 * a_11$ | + $W_3 * a_11$ | + $W_4 * a_11$ | + $W_5 * a_11$ | + $W_6 * a_11$ | + $W_7 * a_11$ | + $W_8 * a_11$ |
-| a_12 | 0 + $W_0 * a_12$ | + $W_1 * a_12$ | + $W_2 * a_12$ | + $W_3 * a_12$ | + $W_4 * a_12$ | + $W_5 * a_12$ | + $W_6 * a_12$ | + $W_7 * a_12$ | + $W_8 * a_12$ |
-| a_13 | 0 + $W_0 * a_13$ | + $W_1 * a_13$ | + $W_2 * a_13$ | + $W_3 * a_13$ | + $W_4 * a_13$ | + $W_5 * a_13$ | + $W_6 * a_13$ | + $W_7 * a_13$ | + $W_8 * a_13$ |
-| a_14 | 0 + $W_0 * a_14$ | + $W_1 * a_14$ | + $W_2 * a_14$ | + $W_3 * a_14$ | + $W_4 * a_14$ | + $W_5 * a_14$ | + $W_6 * a_14$ | + $W_7 * a_14$ | + $W_8 * a_14$ |
-| a_15 | 0 + $W_0 * a_15$ | + $W_1 * a_15$ | + $W_2 * a_15$ | + $W_3 * a_15$ | + $W_4 * a_15$ | + $W_5 * a_15$ | + $W_6 * a_15$ | + $W_7 * a_15$ | + $W_8 * a_15$ | -->
+| $a_{0}$ | <mark style='background-color: rgb(255, 255, 0); color: black;'>$0 + W_{0} * a_{0}$</mark> | $+ W_{1} * a_{0}$ | $+ W_{2} * a_{0}$ | $+ W_{3} * a_{0}$ | $+ W_{4} * a_{0}$ | $+ W_{5} * a_{0}$ | $+ W_{6} * a_{0}$ | $+ W_{7} * a_{0}$ | $+ W_{8} * a_{0}$ |
+| $a_{1}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$0 + W_{0} * a_{1}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{1} * a_{1}$</mark> | $+ W_{2} * a_{1}$ | $+ W_{3} * a_{1}$ | $+ W_{4} * a_{1}$ | $+ W_{5} * a_{1}$ | $+ W_{6} * a_{1}$ | $+ W_{7} * a_{1}$ | $+ W_{8} * a_{1}$ |
+| $a_{2}$ | $0 + W_{0} * a_{2}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{1} * a_{2}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{2} * a_{2}$</mark> | $+ W_{3} * a_{2}$ | $+ W_{4} * a_{2}$ | $+ W_{5} * a_{2}$ | $+ W_{6} * a_{2}$ | $+ W_{7} * a_{2}$ | $+ W_{8} * a_{2}$ |
+| $a_{3}$ | $0 + W_{0} * a_{3}$ | $+ W_{1} * a_{3}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{2} * a_{3}$</mark> | $+ W_{3} * a_{3}$ | $+ W_{4} * a_{3}$ | $+ W_{5} * a_{3}$ | $+ W_{6} * a_{3}$ | $+ W_{7} * a_{3}$ | $+ W_{8} * a_{3}$ |
+| $a_{4}$ | <mark style='background-color: rgb(191, 255, 0); color: black;'>$0 + W_{0} * a_{4}$</mark> | $+ W_{1} * a_{4}$ | $+ W_{2} * a_{4}$ | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{3} * a_{4}$</mark> | $+ W_{4} * a_{4}$ | $+ W_{5} * a_{4}$ | $+ W_{6} * a_{4}$ | $+ W_{7} * a_{4}$ | $+ W_{8} * a_{4}$ |
+| $a_{5}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$0 + W_{0} * a_{5}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{1} * a_{5}$</mark> | $+ W_{2} * a_{5}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{3} * a_{5}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{4} * a_{5}$</mark> | $+ W_{5} * a_{5}$ | $+ W_{6} * a_{5}$ | $+ W_{7} * a_{5}$ | $+ W_{8} * a_{5}$ |
+| $a_{6}$ | $0 + W_{0} * a_{6}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{1} * a_{6}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{2} * a_{6}$</mark> | $+ W_{3} * a_{6}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{4} * a_{6}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{5} * a_{6}$</mark> | $+ W_{6} * a_{6}$ | $+ W_{7} * a_{6}$ | $+ W_{8} * a_{6}$ |
+| $a_{7}$ | $0 + W_{0} * a_{7}$ | $+ W_{1} * a_{7}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{2} * a_{7}$</mark> | $+ W_{3} * a_{7}$ | $+ W_{4} * a_{7}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{5} * a_{7}$</mark> | $+ W_{6} * a_{7}$ | $+ W_{7} * a_{7}$ | $+ W_{8} * a_{7}$ |
+| $a_{8}$ | $0 + W_{0} * a_{8}$ | $+ W_{1} * a_{8}$ | $+ W_{2} * a_{8}$ | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{3} * a_{8}$</mark> | $+ W_{4} * a_{8}$ | $+ W_{5} * a_{8}$ | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{6} * a_{8}$</mark> | $+ W_{7} * a_{8}$ | $+ W_{8} * a_{8}$ |
+| $a_{9}$ | $0 + W_{0} * a_{9}$ | $+ W_{1} * a_{9}$ | $+ W_{2} * a_{9}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{3} * a_{9}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{4} * a_{9}$</mark> | $+ W_{5} * a_{9}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{6} * a_{9}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{7} * a_{9}$</mark> | $+ W_{8} * a_{9}$ |
+| $a_{10}$ | $0 + W_{0} * a_{10}$ | $+ W_{1} * a_{10}$ | $+ W_{2} * a_{10}$ | $+ W_{3} * a_{10}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{4} * a_{10}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{5} * a_{10}$</mark> | $+ W_{6} * a_{10}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{7} * a_{10}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{8} * a_{10}$</mark> |
+| $a_{11}$ | $0 + W_{0} * a_{11}$ | $+ W_{1} * a_{11}$ | $+ W_{2} * a_{11}$ | $+ W_{3} * a_{11}$ | $+ W_{4} * a_{11}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{5} * a_{11}$</mark> | $+ W_{6} * a_{11}$ | $+ W_{7} * a_{11}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$+ W_{8} * a_{11}$</mark> |
+| $a_{12}$ | $0 + W_{0} * a_{12}$ | $+ W_{1} * a_{12}$ | $+ W_{2} * a_{12}$ | $+ W_{3} * a_{12}$ | $+ W_{4} * a_{12}$ | $+ W_{5} * a_{12}$ | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{6} * a_{12}$</mark> | $+ W_{7} * a_{12}$ | $+ W_{8} * a_{12}$ |
+| $a_{13}$ | $0 + W_{0} * a_{13}$ | $+ W_{1} * a_{13}$ | $+ W_{2} * a_{13}$ | $+ W_{3} * a_{13}$ | $+ W_{4} * a_{13}$ | $+ W_{5} * a_{13}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{6} * a_{13}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{7} * a_{13}$</mark> | $+ W_{8} * a_{13}$ |
+| $a_{14}$ | $0 + W_{0} * a_{14}$ | $+ W_{1} * a_{14}$ | $+ W_{2} * a_{14}$ | $+ W_{3} * a_{14}$ | $+ W_{4} * a_{14}$ | $+ W_{5} * a_{14}$ | $+ W_{6} * a_{14}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{7} * a_{14}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{8} * a_{14}$</mark> |
+| $a_{15}$ | $0 + W_{0} * a_{15}$ | $+ W_{1} * a_{15}$ | $+ W_{2} * a_{15}$ | $+ W_{3} * a_{15}$ | $+ W_{4} * a_{15}$ | $+ W_{5} * a_{15}$ | $+ W_{6} * a_{15}$ | $+ W_{7} * a_{15}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{8} * a_{15}$</mark> |
+
+
+
 
 ### Summary
 
