@@ -1,6 +1,17 @@
 # CNN-on-FPGA
 Running a deployed Convolutional Neural Network on FPGA
 
+## For visitors
+
+Currently, the convolution layer of this project is completed and well docuemented.
+
+If you would like to know the underlying algorithm and architecture of the convolution layer, please read [this PDF document](./convolver.pdf). If you found the auto-generated PDF's word sizing too small, you can try the original Markdown's preview [here](./Documentations/convolver.md). (The only difference is that the tables in Markdown preview is very faint, so you can refer back to the PDF if you want to read the colored tables).
+
+The files related to C++ logic verification are all included in the Logic_Verification/Convolver_CNN folder. The header file of the implementation can be found [here](./Logic_Verification/Convolver_CNN/convolver.h), while the main C++ file can be found [here](./Logic_Verification/Convolver_CNN/convolver.cpp). You can also find a C++ "testbench" in the main.cpp [here](./Logic_Verification/Convolver_CNN/main.cpp)
+
+Finally, the star of the show is the [Verilog implementation](./convolver.v), and the combinational MAC module that was defined [here](./mac_unit.v). Please feel free to play around with the [testbench file](./convolver_tb.v) as well if you want to!
+
+# Major update log
 
 ## Update 09/23
 - Completed C++-based algorithm verification for Hyperbolic Tangent (tanh) powered by CORDIC.

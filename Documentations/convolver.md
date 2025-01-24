@@ -169,19 +169,24 @@ But where does a start-of-the-row MAC get its input running sum from? For the pr
 
 The table below shows how each output matrix's element was calculated. Please note that each thread is highlighted with a unique color specified in the legend below.
 
-| Highlight Color | Output Matrix Element |
+(I'm sorry that the GitHub Markdown preview engine shows highlight very faintly, I've attached a screenshot version here for the sake of clarity)
+
+![Alt Text](images/legend.png "Optional Title")
+<!-- | Highlight Color | Output Matrix Element |
 |-------|---------|
 | <span style="display:inline-block;width:15px;height:15px;background-color: rgb(255, 255, 0);"></span> | (0, 0) |
 | <span style="display:inline-block;width:15px;height:15px;background-color: rgb(191, 255, 0);"></span> | (0, 1) |
 | <span style="display:inline-block;width:15px;height:15px;background-color: rgb(127, 255, 0);"></span> | (1, 0) |
-| <span style="display:inline-block;width:15px;height:15px;background-color: rgb(63, 255, 0);"></span> | (1, 1) |
+| <span style="display:inline-block;width:15px;height:15px;background-color: rgb(63, 255, 0);"></span> | (1, 1) | -->
 
 To follow a particular thread, simply follow the output matrix element's highlighting color from the top of the table to the bottom (in temporal order).
 
 Notice that the yellow thread is identical to the one that we've focused our dicussion on previously. That thread, as mentioned, produces the top left (0,0) element of the output matrix.
 
+(I'm sorry that the GitHub Markdown preview engine shows highlight very faintly, I've attached a screenshot version here for the sake of clarity)
 
-|  | $W_{0}$ | $W_{1}$ | $W_{2}$ | $W_{3}$ | $W_{4}$ | $W_{5}$ | $W_{6}$ | $W_{7}$ | $W_{8}$ |
+![Alt Text](images/computation_thread.png "Optional Title")
+<!-- |  | $W_{0}$ | $W_{1}$ | $W_{2}$ | $W_{3}$ | $W_{4}$ | $W_{5}$ | $W_{6}$ | $W_{7}$ | $W_{8}$ |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | $a_{0}$ | <mark style='background-color: rgb(255, 255, 0); color: black;'>$0 + W_{0} * a_{0}$</mark> | $+ W_{1} * a_{0}$ | $+ W_{2} * a_{0}$ | $+ W_{3} * a_{0}$ | $+ W_{4} * a_{0}$ | $+ W_{5} * a_{0}$ | $+ W_{6} * a_{0}$ | $+ W_{7} * a_{0}$ | $+ W_{8} * a_{0}$ |
 | $a_{1}$ | <mark style='background-color: rgb(127, 255, 0); color: black;'>$0 + W_{0} * a_{1}$</mark> | <mark style='background-color: rgb(255, 255, 0); color: black;'>$+ W_{1} * a_{1}$</mark> | $+ W_{2} * a_{1}$ | $+ W_{3} * a_{1}$ | $+ W_{4} * a_{1}$ | $+ W_{5} * a_{1}$ | $+ W_{6} * a_{1}$ | $+ W_{7} * a_{1}$ | $+ W_{8} * a_{1}$ |
@@ -198,7 +203,7 @@ Notice that the yellow thread is identical to the one that we've focused our dic
 | $a_{12}$ | $0 + W_{0} * a_{12}$ | $+ W_{1} * a_{12}$ | $+ W_{2} * a_{12}$ | $+ W_{3} * a_{12}$ | $+ W_{4} * a_{12}$ | $+ W_{5} * a_{12}$ | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{6} * a_{12}$</mark> | $+ W_{7} * a_{12}$ | $+ W_{8} * a_{12}$ |
 | $a_{13}$ | $0 + W_{0} * a_{13}$ | $+ W_{1} * a_{13}$ | $+ W_{2} * a_{13}$ | $+ W_{3} * a_{13}$ | $+ W_{4} * a_{13}$ | $+ W_{5} * a_{13}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{6} * a_{13}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{7} * a_{13}$</mark> | $+ W_{8} * a_{13}$ |
 | $a_{14}$ | $0 + W_{0} * a_{14}$ | $+ W_{1} * a_{14}$ | $+ W_{2} * a_{14}$ | $+ W_{3} * a_{14}$ | $+ W_{4} * a_{14}$ | $+ W_{5} * a_{14}$ | $+ W_{6} * a_{14}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{7} * a_{14}$</mark> | <mark style='background-color: rgb(191, 255, 0); color: black;'>$+ W_{8} * a_{14}$</mark> |
-| $a_{15}$ | $0 + W_{0} * a_{15}$ | $+ W_{1} * a_{15}$ | $+ W_{2} * a_{15}$ | $+ W_{3} * a_{15}$ | $+ W_{4} * a_{15}$ | $+ W_{5} * a_{15}$ | $+ W_{6} * a_{15}$ | $+ W_{7} * a_{15}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{8} * a_{15}$</mark> |
+| $a_{15}$ | $0 + W_{0} * a_{15}$ | $+ W_{1} * a_{15}$ | $+ W_{2} * a_{15}$ | $+ W_{3} * a_{15}$ | $+ W_{4} * a_{15}$ | $+ W_{5} * a_{15}$ | $+ W_{6} * a_{15}$ | $+ W_{7} * a_{15}$ | <mark style='background-color: rgb(63, 255, 0); color: black;'>$+ W_{8} * a_{15}$</mark> | -->
 
 
 
