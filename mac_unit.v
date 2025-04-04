@@ -10,9 +10,9 @@ module mac_unit #(
 )(
     input clk, rst, clk_en,
     // MAC operation: out = a * b + c
-    input [M-1:0] a, // Multiplier
-    input [M-1:0] b, // Multiplicand
-    input [M-1:0] c, // Accumulator
+    input wire signed [M-1:0] a, // Multiplier
+    input wire signed [M-1:0] b, // Multiplicand
+    input wire signed [M-1:0] c, // Accumulator
     // output [M-1:0] out 
     // CHANGE NOTE 1: Changing the output from a wire to a register
     // With this change, we're putting the responsibility of the storage
@@ -22,11 +22,20 @@ module mac_unit #(
     // CHANGE NOTE 2: Changing the output from a register back to a wire
     // We are exporting the calculate value straight to the shift register
     // array element when the calculation is done.
-    output [(M-1):0] out // 
+    output wire signed [(M-1):0] out // 
     // output [(M-1):0] out // 
 );
 
-assign out = a * b + c;
+wire signed [(2 * M):0] full_result = $signed(a) * $signed(b) + $signed(c);
+
+localparam signed [M-1:0] MAX_VAL =  (1 <<< (M-1)) - 1;
+localparam signed [M-1:0] MIN_VAL = -(1 <<< (M-1));
+
+assign out = (full_result > MAX_VAL) ? MAX_VAL :
+             (full_result < MIN_VAL) ? MIN_VAL :
+             $signed(full_result[M-1:0]);
+
+// assign out = a * b + c;
 
 // reg [M-1:0] temp_reg;
 // REFER TO CHANGE NOTE 1

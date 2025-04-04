@@ -33,9 +33,18 @@
             "args": [
                 "-o",
                 "output.vvp",
-                "convolver_tb.v",
-                "convolver.v",
-                "mac_unit.v"
+                "tanh_initializer_tb.v",
+                "tanh_initializer.v"
+                // "atanh_constants_tb.v", // Testbench file
+
+                // "tb_top_level.v",
+                // "top_level.v",
+                // "atanh_rom.v",
+                // "scaling_rom.v"
+
+                // "convolver_tb.v",
+                // "convolver.v",
+                // "mac_unit.v"
             ],
             "group": {
                 "kind": "build",

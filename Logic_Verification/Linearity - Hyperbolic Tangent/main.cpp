@@ -5,7 +5,7 @@
 #include <iostream>
 
 int main() {
-    double z = 0.75; // Example input
+    double z = 5; // Example input
     CordicResult result = cordicHyperbolicTanh(z);
 //    cout << "sinh(theta) = " << result.y << endl;
 //    cout << "cosh(theta) = " << result.x << endl;
@@ -28,9 +28,9 @@ int main() {
 //    }
 
     for (double test = -24; test <= 24; ++test) {
-        CordicResult answer = cordicDoubleHyperbolicTanh(-1 * pow(2, test));
+        CordicResult answer = cordicDoubleHyperbolicTanh(1 * pow(2, test));
         double cordicValue = answer.y / answer.x;
-        double actualValue = std::tanh(-1 * pow(2, test));
+        double actualValue = std::tanh(1 * pow(2, test));
         double difference = cordicValue - actualValue;
 
 

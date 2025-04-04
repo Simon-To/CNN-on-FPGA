@@ -8,7 +8,7 @@
 using namespace std;
 
 // Precomputed arctanh values for hyperbolic CORDIC
-const int ITERATIONS = 15;
+const int ITERATIONS = 16;
 //const double atanhTable[ITERATIONS] = {
 //        0.5493061443340548,  // atanh(2^-0)
 //        0.25541281188299536, // atanh(2^-1)
@@ -46,7 +46,9 @@ double calculateHyperbolicScalingFactor() {
 
 //    for (int i = 0; i < ITERATIONS; i++) {
     for (int i = 1; i <= ITERATIONS; i++) {
+        
         scalingFactor *= sqrt(1 - pow(2, -2*i));
+        // cout << "scalingFactor[" << i << "] = " << scalingFactor << endl;
 
 //        cout << "scalingFactor[" << (i + 1) << "] = " << scalingFactor << endl;
     }
@@ -57,12 +59,13 @@ double calculateHyperbolicScalingFactor() {
 }
 
 double* createAtanhArray(int n) {
-    double* atanhArray = new double[n + 1]; // Dynamically allocate an array of size n
+    double* atanhArray = new double[n]; // Dynamically allocate an array of size n
 
-    for (int i = 0; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
 //        atanhArray[i] = std::atanh(std::pow(2, -i)); // Calculate and store atanh(2^-i)
         atanhArray[i] = std::atanh(std::pow(2, -i)); // Calculate and store atanh(2^-i)
-//        cout << "atanhArray[" << i << "] = " << atanhArray[i] << endl;
+        // cout << "atanhArray[" << i << "] = " << atanhArray[i] << endl;
+        //        cout << "atanhArray[" << i << "] = " << atanhArray[i] << endl;
     }
 
 
@@ -71,9 +74,9 @@ double* createAtanhArray(int n) {
 }
 
 double* createDoubleAtanhArray(int n) {
-    double* atanhArray = new double[n + 1]; // Dynamically allocate an array of size n
-
-    for (int i = 0; i <= n; i++) {
+    // double* atanhArray = new double[n + 1]; // Dynamically allocate an array of size n
+    double* atanhArray = new double[n];
+    for (int i = 0; i < n; i++) {
 //        atanhArray[i] = std::atanh(std::pow(2, -i)); // Calculate and store atanh(2^-i)
         atanhArray[i] = std::atanh(std::pow(2, -i)); // Calculate and store atanh(2^-i)
 //        cout << "atanhArray[" << i << "] = " << atanhArray[i] << endl;
@@ -104,6 +107,8 @@ CordicResult cordicHyperbolicTanh(double z) {
     double y = 0.0;
     double angle = z;
 
+    // cout << "scalingFactor = " << calculateHyperbolicScalingFactor() << endl;
+
 //    cout << "Initial x = " << x << endl;
 //    cout << "Initial x = " << x << endl;
 
@@ -112,13 +117,20 @@ CordicResult cordicHyperbolicTanh(double z) {
 
         // Update x, y, and z
 //        double new_x = x - di * y * pow(2, -i);
+        // 
         double new_x = x + di * y * pow(2, -i);
         double new_y = y + di * x * pow(2, -i);
 
-        angle -= di * atanhTable[i];
+        
+        angle -= di * atanhTable[i]; 
 
         x = new_x;
         y = new_y;
+
+        if (z * angle < 0) {
+            cout << "z * angle < 0!!!!!" << endl;
+            break;
+        }
 //        cout << "x[" << (i + 1) << "] = " << x << endl;
 //        cout << "y[" << (i + 1) << "] = " << y << endl;
     }
@@ -135,7 +147,12 @@ CordicResult cordicDoubleHyperbolicTanh(double z) {
     double* atanhTable = createAtanhArray(ITERATIONS);
 
 //    double x = calculateHyperbolicScalingFactor();
-    double x = 1 / calculateHyperbolicScalingFactor();
+    // calculateHyperbolicScalingFactor() is a
+    // number of range (0, 1), where 1 is inclusive
+    // pow(scaling_factor, 2) is a number of 
+    // range (0, 1) too.
+    // 1 / range (0, 1) = around 1.56
+    double x = 1 / pow(calculateHyperbolicScalingFactor(),2);
     double y = 0.0;
     double angle = z;
 
@@ -148,10 +165,23 @@ CordicResult cordicDoubleHyperbolicTanh(double z) {
 
             // Update x, y, and z
 //        double new_x = x - di * y * pow(2, -i);
+            // new_x and new_y should be in range (-8, 8)
             double new_x = x + di * y * pow(2, -i);
+            // cout << "new_x = " << new_x << endl;
             double new_y = y + di * x * pow(2, -i);
+            // cout << "new_y = " << new_y << endl;
+            // if (new_x > 4 || new_x < -4) {
+            //     cout << "new_x = " << new_x << endl;
+            // }
+            // if (new_y > 4 || new_y < -4) {
+            //     cout << "new_y = " << new_y << endl;
+            // }
 
+            // atanhTable[i] in range(0, 1)
+            // di is either -1 or 1
+            // angle in range(-1, 1)
             angle -= di * atanhTable[i];
+            // cout << "angle = " << angle << endl;
 
             x = new_x;
             y = new_y;

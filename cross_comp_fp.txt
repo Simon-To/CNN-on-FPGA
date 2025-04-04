@@ -1,0 +1,192 @@
+Are we using double-iteration to ensure convergence? (1 for yes, 0 for no): 1
+\atanh(2^-1) = 0.549306
+Double value: 0.549306
+Fixed-point representation (unsigned integer): 2359251925
+Binary (32-bit): 0b10001100100111110101001111010101
+Decimal value: 0.549306
+
+atanh(2^-2) = 0.255413
+Double value: 0.255413
+Fixed-point representation (unsigned integer): 1096989674
+Binary (32-bit): 0b01000001011000101011101111101010
+Decimal value: 0.255413
+
+atanh(2^-3) = 0.125657
+Double value: 0.125657
+Fixed-point representation (unsigned integer): 539693625
+Binary (32-bit): 0b00100000001010110001001000111001
+Decimal value: 0.125657
+
+atanh(2^-4) = 0.0625816
+Double value: 0.0625816
+Fixed-point representation (unsigned integer): 268785803
+Binary (32-bit): 0b00010000000001010101100010001011
+Decimal value: 0.0625816
+
+atanh(2^-5) = 0.0312602
+Double value: 0.0312602
+Fixed-point representation (unsigned integer): 134261444
+Binary (32-bit): 0b00001000000000001010101011000100
+Decimal value: 0.0312602
+
+atanh(2^-6) = 0.0156263
+Double value: 0.0156263
+Fixed-point representation (unsigned integer): 67114326
+Binary (32-bit): 0b00000100000000000001010101010110
+Decimal value: 0.0156263
+
+atanh(2^-7) = 0.00781266
+Double value: 0.00781266
+Fixed-point representation (unsigned integer): 33555115
+Binary (32-bit): 0b00000010000000000000001010101011
+Decimal value: 0.00781266
+
+atanh(2^-8) = 0.00390627
+Double value: 0.00390627
+Fixed-point representation (unsigned integer): 16777301
+Binary (32-bit): 0b00000001000000000000000001010101
+Decimal value: 0.00390627
+
+atanh(2^-9) = 0.00195313
+Double value: 0.00195313
+Fixed-point representation (unsigned integer): 8388619
+Binary (32-bit): 0b00000000100000000000000000001011
+Decimal value: 0.00195313
+
+atanh(2^-10) = 0.000976563
+Double value: 0.000976563
+Fixed-point representation (unsigned integer): 4194305
+Binary (32-bit): 0b00000000010000000000000000000001
+Decimal value: 0.000976563
+
+atanh(2^-11) = 0.000488281
+Double value: 0.000488281
+Fixed-point representation (unsigned integer): 2097152
+Binary (32-bit): 0b00000000001000000000000000000000
+Decimal value: 0.000488281
+
+atanh(2^-12) = 0.000244141
+Double value: 0.000244141
+Fixed-point representation (unsigned integer): 1048576
+Binary (32-bit): 0b00000000000100000000000000000000
+Decimal value: 0.000244141
+
+atanh(2^-13) = 0.00012207
+Double value: 0.00012207
+Fixed-point representation (unsigned integer): 524288
+Binary (32-bit): 0b00000000000010000000000000000000
+Decimal value: 0.00012207
+
+atanh(2^-14) = 6.10352e-05
+Double value: 6.10352e-05
+Fixed-point representation (unsigned integer): 262144
+Binary (32-bit): 0b00000000000001000000000000000000
+Decimal value: 6.10352e-05
+
+atanh(2^-15) = 3.05176e-05
+Double value: 3.05176e-05
+Fixed-point representation (unsigned integer): 131072
+Binary (32-bit): 0b00000000000000100000000000000000
+Decimal value: 3.05176e-05
+
+atanh(2^-16) = 1.52588e-05
+Double value: 1.52588e-05
+Fixed-point representation (unsigned integer): 65536
+Binary (32-bit): 0b00000000000000010000000000000000
+Decimal value: 1.52588e-05
+
+atanh(2^-17) = 7.62939e-06
+Double value: 7.62939e-06
+Fixed-point representation (unsigned integer): 32768
+Binary (32-bit): 0b00000000000000001000000000000000
+Decimal value: 7.62939e-06
+
+atanh(2^-18) = 3.8147e-06
+Double value: 3.8147e-06
+Fixed-point representation (unsigned integer): 16384
+Binary (32-bit): 0b00000000000000000100000000000000
+Decimal value: 3.8147e-06
+
+atanh(2^-19) = 1.90735e-06
+Double value: 1.90735e-06
+Fixed-point representation (unsigned integer): 8192
+Binary (32-bit): 0b00000000000000000010000000000000
+Decimal value: 1.90735e-06
+
+atanh(2^-20) = 9.53674e-07
+Double value: 9.53674e-07
+Fixed-point representation (unsigned integer): 4096
+Binary (32-bit): 0b00000000000000000001000000000000
+Decimal value: 9.53674e-07
+
+atanh(2^-21) = 4.76837e-07
+Double value: 4.76837e-07
+Fixed-point representation (unsigned integer): 2048
+Binary (32-bit): 0b00000000000000000000100000000000
+Decimal value: 4.76837e-07
+
+atanh(2^-22) = 2.38419e-07
+Double value: 2.38419e-07
+Fixed-point representation (unsigned integer): 1024
+Binary (32-bit): 0b00000000000000000000010000000000
+Decimal value: 2.38419e-07
+
+atanh(2^-23) = 1.19209e-07
+Double value: 1.19209e-07
+Fixed-point representation (unsigned integer): 512
+Binary (32-bit): 0b00000000000000000000001000000000
+Decimal value: 1.19209e-07
+
+atanh(2^-24) = 5.96046e-08
+Double value: 5.96046e-08
+Fixed-point representation (unsigned integer): 256
+Binary (32-bit): 0b00000000000000000000000100000000
+Decimal value: 5.96046e-08
+
+atanh(2^-25) = 2.98023e-08
+Double value: 2.98023e-08
+Fixed-point representation (unsigned integer): 128
+Binary (32-bit): 0b00000000000000000000000010000000
+Decimal value: 2.98023e-08
+
+atanh(2^-26) = 1.49012e-08
+Double value: 1.49012e-08
+Fixed-point representation (unsigned integer): 64
+Binary (32-bit): 0b00000000000000000000000001000000
+Decimal value: 1.49012e-08
+
+atanh(2^-27) = 7.45058e-09
+Double value: 7.45058e-09
+Fixed-point representation (unsigned integer): 32
+Binary (32-bit): 0b00000000000000000000000000100000
+Decimal value: 7.45058e-09
+
+atanh(2^-28) = 3.72529e-09
+Double value: 3.72529e-09
+Fixed-point representation (unsigned integer): 16
+Binary (32-bit): 0b00000000000000000000000000010000
+Decimal value: 3.72529e-09
+
+atanh(2^-29) = 1.86265e-09
+Double value: 1.86265e-09
+Fixed-point representation (unsigned integer): 8
+Binary (32-bit): 0b00000000000000000000000000001000
+Decimal value: 1.86265e-09
+
+atanh(2^-30) = 9.31323e-10
+Double value: 9.31323e-10
+Fixed-point representation (unsigned integer): 4
+Binary (32-bit): 0b00000000000000000000000000000100
+Decimal value: 9.31323e-10
+
+atanh(2^-31) = 4.65661e-10
+Double value: 4.65661e-10
+Fixed-point representation (unsigned integer): 2
+Binary (32-bit): 0b00000000000000000000000000000010
+Decimal value: 4.65661e-10
+
+atanh(2^-32) = 2.32831e-10
+Double value: 2.32831e-10
+Fixed-point representation (unsigned integer): 1
+Binary (32-bit): 0b00000000000000000000000000000001
+Decimal value: 2.32831e-10

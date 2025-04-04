@@ -205,3 +205,90 @@ For synthesizable Verilog:
 While **VSCode 2 on macOS** doesn’t have a native debugger for Verilog, you can achieve debugging and simulation by integrating external tools like **Icarus Verilog**, **GTKWave**, or **ModelSim**. With extensions for syntax highlighting and tasks for simulation, VSCode can serve as an effective Verilog development environment.
 
 
+# Non-linearity
+
+## About range of x and y for any iteration:
+
+Empirically tested to never exceed the range of (-8, 8). More specifically, the range seemed to be (-4.06743, 4.18856). Therefore, I chose to use Q4.[N-4] to represent x and y, where N is the total number of bits.
+
+## Representation of variables of interest
+
+- di:     2-bit signed (2's complement)
+- x/y:    N-bit Q4.[N-4] (2's complement)
+  - 1 out of the 4 integer bits is used as sign
+  - The rest 3 bits represents from 0 to 7 inclusive
+- angle:  N-bit unsigned integer
+- scaling factor: Q1.[N-1] (unsigned)
+- 
+
+## Implmentation details
+
+- Please implement the double-iteration into a single stage, so that the total number of stages (latency) remain N
+
+Heirarchical Structure of tanh module:
+- (1) Initialization Combinational Circuit: tanh_initialize
+  - Inputs:
+    - wire [(WIDTH - 1), 0] conv_result, 
+    - wire result_valid, 
+    - wire conv_end
+  - Outputs:
+    - wire [(WIDTH - 1), 0] init_x,
+    - wire [(WIDTH - 1), 0] init_y,
+    - wire [(WIDTH - 1), 0] init_angle,
+    - wire result_valid, 
+    - wire conv_end
+- (2) Stage Register: tanh_stage_reg 
+  - (DEPRECATED: Register will NO LONGER be modularized, it will be annexed by Part (1))
+  - Inputs:
+    - wire [(WIDTH - 1), 0] prev_x, 
+    - wire [(WIDTH - 1), 0] prev_y, 
+    - wire [(WIDTH - 1), 0] prev_angle
+    - wire result_valid, 
+    - wire conv_end
+  - Outputs: 
+    - wire [(WIDTH - 1), 0] next_x, 
+    - wire [(WIDTH - 1), 0] next_y, 
+    - wire [(WIDTH - 1), 0] next_angle
+    - wire result_valid, 
+    - wire conv_end
+- (3) CORDIC Internal Iteration: cordic
+  - Inputs:
+    - wire [(WIDTH - 1), 0] old_x, 
+    - wire [(WIDTH - 1), 0] old_y, 
+    - wire [(WIDTH - 1), 0] old_angle
+  - Outputs:
+    - wire [(WIDTH - 1), 0] new_x, 
+    - wire [(WIDTH - 1), 0] new_y, 
+    - wire [(WIDTH - 1), 0] new_angle
+- (4) One tanh iteration: tanh_iteration
+  - 2x (3)
+  - 1x (2)
+  - Inputs:
+    - wire [(WIDTH - 1), 0] before_x, 
+    - wire [(WIDTH - 1), 0] before_y, 
+    - wire [(WIDTH - 1), 0] before_angle
+    - wire result_valid, 
+    - wire conv_end
+  - Outputs:
+    - wire [(WIDTH - 1), 0] after_x, 
+    - wire [(WIDTH - 1), 0] after_y, 
+    - wire [(WIDTH - 1), 0] after_angle
+    - wire result_valid, 
+    - wire conv_end
+- (5) Divider for calculating final tanh value: tanh_divider
+  - Inputs:
+    - wire [(WIDTH - 1), 0] final_x,
+    - wire [(WIDTH - 1), 0] final_y, 
+  - Output:
+    - wire [(WIDTH - 1), 0] tanh_result
+- (6) Table access (deprecated)
+  - arctanh table access will NOT be modularized.
+- Overall architecture of tanh: tanh
+  - Inputs:
+    - wire [(WIDTH - 1), 0] conv_result, 
+    - wire result_valid, 
+    - wire conv_end
+  - Outputs:
+    - wire [(WIDTH - 1), 0] tanh_result,
+    - wire result_valid, 
+    - wire conv_end

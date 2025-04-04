@@ -11,6 +11,7 @@ module convolution #( // Declaring convolution as a parameterized module
 )(
     input clk,              // Clock signal
     input clk_en,           // Clock enables
+    // reset is async active high
     input glb_rst,          // Global reset signal
 
     // Notice that the kernel matrix is flattened into a 1D array
@@ -56,6 +57,8 @@ endgenerate
 // Each element of shift_reg is a series of binary of size:
 // [(WIDTH-1):0]
 
+// 2025/04/03: Change width of registers and wires to (2 * WIDTH - 1)
+// to reflect the
 reg [WIDTH-1:0] shift_reg [0:(((K - 1) * N) + K)];
 
 // Initialize wires that leads to each of the element within register array
