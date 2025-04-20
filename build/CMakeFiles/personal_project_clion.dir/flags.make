@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4
+CXX_INCLUDES = -isystem /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4
 
 CXX_FLAGSarm64 = -g -std=gnu++14 -arch arm64
 

@@ -39,6 +39,10 @@ int main() {
 
         std::cout << "test = " << test << ", CORDIC = " << cordicValue << ", Actual = " << actualValue << ", Difference = " << difference << std::endl;
     }
+    CordicResult answer = cordicDoubleHyperbolicTanh(1);
+    double cordicValue = answer.y / answer.x;
+    cout << "CORDIC tanh(1) = " << cordicValue << endl;
+    cout << "tanh(1) = " << std::tanh(1) << endl;
 
 
 //    for (double test = -24; test <= 24; ++test) {

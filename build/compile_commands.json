@@ -1,13 +1,13 @@
 [
 {
   "directory": "/Users/simonto/Document/personal_projects/CNN-on-FPGA/build",
-  "command": "/usr/bin/clang++  -isystem /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4 -g -std=gnu++14 -arch arm64 -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp",
+  "command": "/usr/bin/clang++  -isystem /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4 -g -std=gnu++14 -arch arm64 -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp",
   "file": "/Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/main.cpp",
   "output": "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/main.cpp.o"
 },
 {
   "directory": "/Users/simonto/Document/personal_projects/CNN-on-FPGA/build",
-  "command": "/usr/bin/clang++  -isystem /opt/homebrew/Cellar/opencv/4.11.0/include/opencv4 -g -std=gnu++14 -arch arm64 -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp",
+  "command": "/usr/bin/clang++  -isystem /opt/homebrew/Cellar/opencv/4.11.0_1/include/opencv4 -g -std=gnu++14 -arch arm64 -o CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o -c /Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp",
   "file": "/Users/simonto/Document/personal_projects/CNN-on-FPGA/Logic_Verification/Convolver_CNN/Convolver.cpp",
   "output": "CMakeFiles/personal_project_clion.dir/Logic_Verification/Convolver_CNN/Convolver.cpp.o"
 }

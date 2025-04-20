@@ -1143,7 +1143,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[/opt/homebrew/Cellar/opencv/4.11.0][v4.11.0()]"
+			"value" : "[/opt/homebrew/Cellar/opencv/4.11.0_1][v4.11.0()]"
 		},
 		{
 			"name" : "OpenCV_DIR",

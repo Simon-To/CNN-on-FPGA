@@ -28,8 +28,10 @@ int main() {
 
     // const int N = user_input; // Set N to the user input
 
-    const size_t N_const = 32; // PLEASE CHANGE THIS NUMBER TO MATCH THE NUMBER OF BITS
-    int N = 32;
+    // const size_t N_const = 32; // PLEASE CHANGE THIS NUMBER TO MATCH THE NUMBER OF BITS
+    // int N = 32;
+    const size_t N_const = 16; // PLEASE CHANGE THIS NUMBER TO MATCH THE NUMBER OF BITS
+    int N = 16;
 
     cout << "Are we using double-iteration to ensure convergence? (1 for yes, 0 for no): " << flush;
     int useDoubleIteration;
@@ -53,6 +55,8 @@ int main() {
         // If using double-iteration, square the scaling factor
         scalingFactor *= scalingFactor;
     }
+
+    cout << "Scaling Factor An = " << scalingFactor << std::endl;
 
     // Step 1b: Write the scaling factor to the file as a 4-digit hexadecimal number
 
@@ -100,7 +104,7 @@ int main() {
         // std::cout << "Fixed-point value (hex): 0x" 
                 // << std::hex << fixedPoint << std::dec << std::endl;
         
-        cout << "" << endl;
+        // cout << "" << endl;
 
 
 

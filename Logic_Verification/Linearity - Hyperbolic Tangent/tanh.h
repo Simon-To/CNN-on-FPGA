@@ -102,10 +102,13 @@ CordicResult cordicHyperbolicTanh(double z) {
 //    double x = 1.207497067763; // Scaling factor for hyperbolic mode
     double* atanhTable = createAtanhArray(ITERATIONS);
 
+    
+
 //    double x = calculateHyperbolicScalingFactor();
     double x = 1 / calculateHyperbolicScalingFactor();
     double y = 0.0;
     double angle = z;
+    
 
     // cout << "scalingFactor = " << calculateHyperbolicScalingFactor() << endl;
 
@@ -116,7 +119,7 @@ CordicResult cordicHyperbolicTanh(double z) {
         double di = (angle < 0) ? -1 : 1;
 
         // Update x, y, and z
-//        double new_x = x - di * y * pow(2, -i);
+        // double new_x = x - di * y * pow(2, -i);
         // 
         double new_x = x + di * y * pow(2, -i);
         double new_y = y + di * x * pow(2, -i);
@@ -156,10 +159,17 @@ CordicResult cordicDoubleHyperbolicTanh(double z) {
     double y = 0.0;
     double angle = z;
 
+    for (int i = 0; i < ITERATIONS; i++) {
+        cout << "atanhTable[" << i << "] = " << atanhTable[i] << endl;
+        
+    }
+
+   cout << "scalingFactor = " << pow(calculateHyperbolicScalingFactor(),2) << endl;
+
 //    cout << "Initial x = " << x << endl;
 //    cout << "Initial x = " << x << endl;
 
-    for (int i = 1; i < ITERATIONS; i++) {
+    for (int i = 1; i <= ITERATIONS; i++) {
         for (int j = 0; j < 2; ++j) {
             double di = (angle < 0) ? -1 : 1;
 
@@ -188,6 +198,10 @@ CordicResult cordicDoubleHyperbolicTanh(double z) {
 //        cout << "x[" << (i + 1) << "] = " << x << endl;
 //        cout << "y[" << (i + 1) << "] = " << y << endl;
         }
+
+        cout << "x[" << i << "] = " << x << endl;
+        cout << "y[" << i << "] = " << y << endl;
+        cout << "angle[" << i << "] = " << angle << endl;
 
     }
 

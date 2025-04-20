@@ -31,8 +31,8 @@ wire signed [(2 * M):0] full_result = $signed(a) * $signed(b) + $signed(c);
 localparam signed [M-1:0] MAX_VAL =  (1 <<< (M-1)) - 1;
 localparam signed [M-1:0] MIN_VAL = -(1 <<< (M-1));
 
-assign out = (full_result > MAX_VAL) ? MAX_VAL :
-             (full_result < MIN_VAL) ? MIN_VAL :
+assign out = ($signed(full_result) > MAX_VAL) ? MAX_VAL :
+             ($signed(full_result) < MIN_VAL) ? MIN_VAL :
              $signed(full_result[M-1:0]);
 
 // assign out = a * b + c;

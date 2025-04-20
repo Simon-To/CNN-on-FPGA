@@ -33,8 +33,30 @@
             "args": [
                 "-o",
                 "output.vvp",
-                "tanh_initializer_tb.v",
-                "tanh_initializer.v"
+                
+                "tanh_tb 16.v",
+                "tanh.v",
+                "tanh_initializer.v",
+                // "unsigned_to_signed.v",
+
+                // CORDIC core algorithm group
+                // "cordic_tb.v",
+                "cordic.v",
+                "mult_2powi.v",
+                "binary_negater.v",
+                "unsigned_to_signed.v"
+
+                // tanh Initializer group
+                // "tanh_initializer_tb.v",
+                // "tanh_initializer.v",
+                // "unsigned_to_signed.v"
+
+                // "binary_invertor_tb.v",
+                // "binary_invertor.v"
+
+                
+
+
                 // "atanh_constants_tb.v", // Testbench file
 
                 // "tb_top_level.v",
