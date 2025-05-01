@@ -31,20 +31,24 @@
             "type": "shell",
             "command": "iverilog",
             "args": [
+                "-g2012",
                 "-o",
                 "output.vvp",
-                
-                "tanh_tb 16.v",
-                "tanh.v",
-                "tanh_initializer.v",
-                // "unsigned_to_signed.v",
 
-                // CORDIC core algorithm group
-                // "cordic_tb.v",
-                "cordic.v",
-                "mult_2powi.v",
-                "binary_negater.v",
-                "unsigned_to_signed.v"
+                "max_pooler_2x2_tb.v",
+                "max_pooler_2x2.v"
+                
+                // tanh group
+                // "tanh_tb 16.v",
+                // "tanh.v",
+                // "tanh_initializer.v",
+
+                // // CORDIC core algorithm group
+                // // "cordic_tb.v",
+                // "cordic.v",
+                // "mult_2powi.v",
+                // "binary_negater.v",
+                // "unsigned_to_signed.v"
 
                 // tanh Initializer group
                 // "tanh_initializer_tb.v",
