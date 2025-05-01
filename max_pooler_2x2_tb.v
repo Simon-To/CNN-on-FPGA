@@ -4,7 +4,8 @@ module tb_max_pooler_2x2;
 
     parameter WIDTH = 16; // 2^WIDTH = 65536
     // parameter N = 6;  // Input matrix side length
-    parameter N = 7;  // Input matrix side length
+    // parameter N = 7;  // Input matrix side length
+    parameter N = 15;  // Input matrix side length
     parameter K = 3;
     parameter S = 1;
 
@@ -21,7 +22,7 @@ module tb_max_pooler_2x2;
     reg signed [WIDTH-1:0] input_val;
 
     // Outputs
-    wire [WIDTH-1:0] output_val;
+    wire signed [WIDTH-1:0] output_val;
     wire valid_out;
     wire end_out;
     wire [0:(P*P*WIDTH - 1)] output_complete;
@@ -52,6 +53,18 @@ module tb_max_pooler_2x2;
     //     $monitor("Time: %0t, clk: %b, glb_rst: %b, input_val: %d, valid_in: %b, end_in: %b, output_val: %d, valid_out: %b, end_out: %b",
     //              $time, clk, glb_rst, input_val, valid_in, end_in, output_val, valid_out, end_out);
     // end
+
+    initial begin
+        // if (valid_out) begin
+        //     $display("output_val: %d", output_val);
+        // end
+
+        $monitor("Time: %0t, clk: %b, output_val: %d, valid_out: %b, end_out: %b",
+                 $time, clk, output_val, valid_out, end_out);
+        
+        // $monitor("Time: %0t, clk: %b, glb_rst: %b, input_val: %d, EFFECTIVE_M: %d, x_m: %d, y_m: %d, input_counter: %d,valid_in: %b, end_in: %b, output_val: %d, valid_out: %b, end_out: %b",
+        //          $time, clk, glb_rst, input_val, EFFECTIVE_M, x_m, y_m, input_counter, valid_in, end_in, output_val, valid_out, end_out_reg);
+    end
 
     integer i;
     initial begin
@@ -98,6 +111,8 @@ module tb_max_pooler_2x2;
             if ((i+1) % P == 0)
                 $write("\n");
         end
+
+        
 
         $finish;
     end

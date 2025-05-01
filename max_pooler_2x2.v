@@ -25,9 +25,9 @@ module max_pooler_2x2 #(
     parameter M = (N - K) / S + 1; // Side length of input matrix from convolver
     parameter P = M / 2; // Side length of max-pooled matrix
     parameter SKIP_NECESSARY = (M % 2 == 0) ? 1'b0 : 1'b1; // Skip the last row/column if M is odd
-    localparam MP_ADDR_WIDTH = $clog2(P*P);
+    localparam MP_ADDR_WIDTH = $clog2(P*P); // log(36) = 6
     localparam CONV_ADDR_WIDTH = $clog2(M*M);
-    localparam SKIP_ADDR_WIDTH = $clog2(M);
+    localparam SKIP_ADDR_WIDTH = $clog2(M); // log(13) = 4
     localparam SKIP_INDEX = M - 1;
 
     localparam EFFECTIVE_M = SKIP_NECESSARY ? M - 1 : M; // Effective side length of input matrix
@@ -57,7 +57,7 @@ module max_pooler_2x2 #(
     wire [(MP_ADDR_WIDTH - 1):0] x_p = x_m / 2; // TODO: Change to bit shift!
     wire [(MP_ADDR_WIDTH - 1):0] y_p = y_m / 2; // TODO: Change to bit shift!
 
-    wire [(MP_ADDR_WIDTH - 1):0] max_pool_addr = y_p * 2 + x_p; // TODO: Change to bit shift!
+    wire [(MP_ADDR_WIDTH - 1):0] max_pool_addr = y_p * P + x_p; // TODO: Change to bit shift!
 
     wire signed [(WIDTH - 1):0] current_max = max_pool[max_pool_addr];
 
@@ -118,7 +118,7 @@ module max_pooler_2x2 #(
                         // if we are at the last row
                         skip_counter <= 0;
                     end
-                    input_counter <= input_counter;
+                    // input_counter <= input_counter;
                 end
                 else begin
                     skip_counter <= skip_counter + 1;
@@ -145,10 +145,14 @@ module max_pooler_2x2 #(
         end
     end
 
-    initial begin
-        $monitor("Time: %0t, clk: %b, glb_rst: %b, input_val: %d, EFFECTIVE_M: %d, x_m: %d, y_m: %d, input_counter: %d,valid_in: %b, end_in: %b, output_val: %d, valid_out: %b, end_out: %b",
-                 $time, clk, glb_rst, input_val, EFFECTIVE_M, x_m, y_m, input_counter, valid_in, end_in, output_val, valid_out, end_out_reg);
-    end
+    // initial begin
+    //     // if (valid_out) begin
+    //     //     $display("output_val: %d", output_val);
+    //     // end
+        
+    //     $monitor("Time: %0t, clk: %b, glb_rst: %b, input_val: %d, max_pool_addr: %d, x_p: %d, y_p: %d, x_m: %d, y_m: %d, input_counter: %d,valid_in: %b, end_in: %b, output_val: %d, valid_out: %b, end_out: %b",
+    //              $time, clk, glb_rst, input_val, max_pool_addr, x_p, y_p, x_m, y_m, input_counter, valid_in, end_in, output_val, valid_out, end_out_reg);
+    // end
 
 endmodule
     /*
@@ -213,6 +217,27 @@ endmodule
 
             141     1 
             118   237 
+
+
+
+            36  -127  -247  -157    13   141  -155  -238     1    13   118    61   237 
+            140   249   -58   -59   -86   229  -137  -238   143   242   -50   -24   -59 
+            92   -67  -211  -155  -157    10  -128    32   170   -99  -106  -237  -243 
+            -173   107   -43  -254   -82    29   -49    35    10   -54  -196   242   138 
+            65   -40   120  -119   235   182   198   174   -68    42  -245  -143   133 
+            79  -197    58  -130    21   241   217    98    76   159   143   248   -73 
+            -97  -164  -165   137  -183   -48   -41  -175   150    12   -62   200  -137 
+            61    18  -130   109    57    31   -45   133  -136    91    73  -193    42 
+            88  -122  -114  -100   250  -218   115   -93  -209   -77  -161    68   247 
+            -53   -26    90    41   -19   -38  -155   -75   -33   121    68   -48    42 
+            171    14   220  -102    -3   -61    86    78  -153  -246   182  -200   121 
+            -72   148   147  -252  -167   219  -179   217  -147  -138   202   182   149 
+            -186     4   247   105   -76   136    40  -211   -57  -210  -248    28    -3 
+
+            249     -58     229     -137    242     118    
+            107     -43     29      35      170     242    
+            79      120     241     217     159     248 
+            61
     */
     
     
