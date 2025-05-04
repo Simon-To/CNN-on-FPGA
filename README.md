@@ -11,6 +11,15 @@ The files related to C++ logic verification are all included in the Logic_Verifi
 
 Finally, the star of the show is the [Verilog implementation](./convolver.v), and the combinational MAC module that was defined [here](./mac_unit.v). Please feel free to play around with the [testbench file](./convolver_tb.v) as well if you want to!
 
+Update:
+Both Hyperbolic Tangent Non-Linearity and Max-Pooling Layer implementations are completed. As I wrap up this project, you can find their documents here:
+- [Hyperbolic Tangent Non-Linearity](./Documentations/tanh.md)
+- [Max-Pooling Layer](./Documentations/max-pooler.md)
+
+Their Verilog implementations can be found here:
+- [Hyperbolic Tangent Non-Linearity](tanh.v)
+- [Max-Pooling Layer](max_pooler_2x2.v)
+
 # Major update log
 
 ## Update 09/23

@@ -202,8 +202,8 @@ module tanh #(
                 .new_angle(new_angle[k - 1]) // angle output for this stage
             );
 
-            always @(posedge clk) begin
-                if (clk_en) begin
+            // always @(posedge clk) begin
+            //     if (clk_en) begin
                     // if (stage_registers[k][((3 * WIDTH - 1) + 2)] && stage_registers[k][((3 * WIDTH - 1) + 1)]) begin
                     //     $display("At time %t: Stage %0d: valid=1, end=1, x=%b, y=%b, angle=%b, atanh=%b", 
                     //             $time, 
@@ -236,8 +236,8 @@ module tanh #(
 
                     //             );
                     // end
-                end
-            end
+            //     end
+            // end
 
 
             // always @(posedge clk) begin

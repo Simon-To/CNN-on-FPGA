@@ -25,9 +25,9 @@ module max_pooler_2x2 #(
     parameter M = (N - K) / S + 1; // Side length of input matrix from convolver
     parameter P = M / 2; // Side length of max-pooled matrix
     parameter SKIP_NECESSARY = (M % 2 == 0) ? 1'b0 : 1'b1; // Skip the last row/column if M is odd
-    localparam MP_ADDR_WIDTH = $clog2(P*P); // log(36) = 6
-    localparam CONV_ADDR_WIDTH = $clog2(M*M);
-    localparam SKIP_ADDR_WIDTH = $clog2(M); // log(13) = 4
+    localparam MP_ADDR_WIDTH = $clog2(P*P);     // log(36) = 6
+    localparam CONV_ADDR_WIDTH = $clog2(M*M);   
+    localparam SKIP_ADDR_WIDTH = $clog2(M);     // log(13) = 4
     localparam SKIP_INDEX = M - 1;
 
     localparam EFFECTIVE_M = SKIP_NECESSARY ? M - 1 : M; // Effective side length of input matrix
@@ -81,7 +81,7 @@ module max_pooler_2x2 #(
     // max_pool_addr entry is at the end of this clock cycle, it
     // should be the max value of the entire 2x2 max-pooling window.
     // Therefore, we should set the valid_out signal to 1 in the next clock cycle.
-    assign valid_out_next_clk = x_m[0] && y_m[0];
+    wire valid_out_next_clk = x_m[0] && y_m[0];
     always @(*) begin
         integer i;
         for (i = 0; i < P*P; i = i + 1) begin
