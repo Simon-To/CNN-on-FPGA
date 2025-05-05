@@ -17,6 +17,9 @@ Document the development of Non-Linearity of CNN. The Verilog implementation can
 - (Include a figure showcasing the overall architecture)
 - Explain what each module is doing. (some of them with figures) -->
 
+## Overall Pipeline Architecture
+
+![Hyperbolic Tangent Pipeline](./images/tanh_focused.png)
 
 ## What is Non-Linearity?
 
@@ -66,7 +69,7 @@ In terms of the ease of implementation in FPGA or ASIC, we should choose ReLU. T
 
 Hyperbolic Tangent (let's refer it by tanh from now on for the sake of abbreviation) has a graph shown below. Basically it "squeeze" any real number to a number between -1 and 1.
 
-(figure of the a graph of tanh)
+![Hyperbolic Tangent Function](./images/output.png)
 
 
 ## Implementation
