@@ -35,17 +35,31 @@
                 "-o",
                 "output.vvp",
 
-                "cnn_tb.v",
-                "cnn.v",
-                "convolver.v",
-                "mac_unit.v",
-                "tanh.v",
-                "tanh_initializer.v",
-                "cordic.v",
-                "mult_2powi.v",
-                "binary_negater.v",
-                "unsigned_to_signed.v",
-                "max_pooler_2x2.v"
+                "cnn_top_tb.sv",
+                "cnn_top.sv",
+                "cnn.sv",
+                "convolver.sv",
+                "mac_unit.sv",
+                "tanh.sv",
+                "tanh_initializer.sv",
+                "cordic.sv",
+                "mult_2powi.sv",
+                "binary_negater.sv",
+                "unsigned_to_signed.sv",
+                "max_pooler_2x2.sv"
+
+                // Verilog files to include in the build
+                // "cnn_tb.v",
+                // "cnn.v",
+                // "convolver.v",
+                // "mac_unit.v",
+                // "tanh.v",
+                // "tanh_initializer.v",
+                // "cordic.v",
+                // "mult_2powi.v",
+                // "binary_negater.v",
+                // "unsigned_to_signed.v",
+                // "max_pooler_2x2.v"
 
                 // "max_pooler_2x2_tb.v",
                 // "max_pooler_2x2.v"
