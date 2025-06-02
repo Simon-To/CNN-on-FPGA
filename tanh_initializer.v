@@ -50,11 +50,11 @@ module tanh_initializer #(
     // Capping the result to fit in WIDTH bits
     // assign init_x = full_result[WIDTH - 1] ? {{1'b0}, {(WIDTH - 1){1'b1}}} : full_result[(WIDTH - 1):0];
 
-    initial begin
-        #1;
-        $monitor("conv_result = %h, shifted_1 = %b, scaling_factor = %b, quotient = %b", 
-        conv_result, shifted_1, scaling_factor, quotient);
-    end
+    // initial begin
+    //     #1;
+    //     $monitor("conv_result = %h, shifted_1 = %b, scaling_factor = %b, quotient = %b", 
+    //     conv_result, shifted_1, scaling_factor, quotient);
+    // end
 
 
     assign init_y = {WIDTH{1'b0}}; // Initialize y to zero (Q4.(N-4) format)

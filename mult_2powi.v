@@ -3,7 +3,7 @@ module mult_2powi #(
     parameter i     = 0   // iteration index, used for scaling factor
 ) (
     input wire signed [(WIDTH - 1):0] old, // Old x coordinate
-    output wire signed [(WIDTH - 1):0] new // New x coordinate after multiplying by 2^(-i)
+    output wire signed [(WIDTH - 1):0] scaled // New x coordinate after multiplying by 2^(-i)
 );
     // IMPORTANT NOTES ABOUT THIS MODULE:
     // 1. i MUST BE NEGATIVE OR ZERO, because if i > 0, it means we are 
@@ -15,9 +15,9 @@ module mult_2powi #(
 
     generate
         if (i < 0) begin
-            assign new = old >>> (-i); // Right shift to divide by 2^|i|
+            assign scaled = old >>> (-i); // Right shift to divide by 2^|i|
         end else begin
-            assign new = old;  // No shift
+            assign scaled = old;  // No shift
         end
     endgenerate
 endmodule

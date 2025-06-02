@@ -120,13 +120,13 @@ module tanh #(
                 init_angle
             }; // Load initial values on clock enable
 
-            if (stage_registers[0][((3 * WIDTH - 1) + 2)] && stage_registers[0][((3 * WIDTH - 1) + 1)]) begin
-                $display("At time %t: Stage 0: valid=1, end=1, x=%b, y=%b, angle=%h", 
-                        $time, 
-                        stage_registers[0][(3 * WIDTH - 1):(2 * WIDTH)], 
-                        stage_registers[0][(2 * WIDTH - 1):(WIDTH)], 
-                        stage_registers[0][(WIDTH - 1):0]);
-            end
+            // if (stage_registers[0][((3 * WIDTH - 1) + 2)] && stage_registers[0][((3 * WIDTH - 1) + 1)]) begin
+            //     $display("At time %t: Stage 0: valid=1, end=1, x=%b, y=%b, angle=%h", 
+            //             $time, 
+            //             stage_registers[0][(3 * WIDTH - 1):(2 * WIDTH)], 
+            //             stage_registers[0][(2 * WIDTH - 1):(WIDTH)], 
+            //             stage_registers[0][(WIDTH - 1):0]);
+            // end
         end
     end
 

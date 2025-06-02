@@ -234,6 +234,9 @@ generate
                     else if (clk_en)
                     begin // Clock is enabled, shift the data
                         if ((1 + (k * N) + l) <= (((K - 1) * N) + K)) begin
+                            // Making sure that we are IN VALID RANGE
+                            // because the for loop goes from K and N for k and l,
+                            // We WILL GO OUT OF BOUNDS if we don't check this.
                             shift_reg[1 + (k * N) + l] <= shift_reg[(k * N) + l]; // Store data
                         end
                     end
@@ -326,7 +329,7 @@ always @(posedge clk) begin
 
         // result_valid update rules:
         if (
-            // Check if the current output should be a part of the output
+            // Check if the current output should be a part of the output matrix
             // The top-left of the current kernel is located at a valid stride
             (((i - (K - 1)) % S) == 0) &&
             (((j - (K - 1)) % S) == 0)

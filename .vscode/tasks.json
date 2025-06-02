@@ -35,8 +35,20 @@
                 "-o",
                 "output.vvp",
 
-                "max_pooler_2x2_tb.v",
+                "cnn_tb.v",
+                "cnn.v",
+                "convolver.v",
+                "mac_unit.v",
+                "tanh.v",
+                "tanh_initializer.v",
+                "cordic.v",
+                "mult_2powi.v",
+                "binary_negater.v",
+                "unsigned_to_signed.v",
                 "max_pooler_2x2.v"
+
+                // "max_pooler_2x2_tb.v",
+                // "max_pooler_2x2.v"
                 
                 // tanh group
                 // "tanh_tb 16.v",
@@ -44,7 +56,7 @@
                 // "tanh_initializer.v",
 
                 // // CORDIC core algorithm group
-                // // "cordic_tb.v",
+                // "cordic_tb.v",
                 // "cordic.v",
                 // "mult_2powi.v",
                 // "binary_negater.v",

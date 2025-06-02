@@ -65,7 +65,7 @@ module cordic #(
         .i(-i) // i is the iteration index
     ) y_2powi (
         .old(di_old_y), // old_y scaled by 2^(-i)
-        .new(di_old_y_pow2) // new scaled value
+        .scaled(di_old_y_pow2) // new scaled value
     );
 
     // initial begin
@@ -107,7 +107,7 @@ module cordic #(
         .i(-i) // i is the iteration index
     ) x_2powi (
         .old(di_old_x), // old_x scaled by 2^(-i)
-        .new(di_old_x_pow2) // new scaled value
+        .scaled(di_old_x_pow2) // new scaled value
     );
 
     wire signed [WIDTH:0] new_y_temp = $signed(old_y) + $signed(di_old_x_pow2); // Calculate new y coordinate
