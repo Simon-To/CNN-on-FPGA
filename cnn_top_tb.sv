@@ -45,6 +45,7 @@ module cnn_top_tb;
         // Add test cases here to drive inputs and check outputs
         wait (top_output_end && top_output_valid); // Wait for output to be valid and end signal
         // #100 $finish; // End simulation after some time
+        #finish; // End simulation
     end
 
 endmodule
